@@ -4,13 +4,11 @@ import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
-import { getServerSession } from 'next-auth';
 
 
 export default function Home() {
   const [login, setLogin] = useState(true)
   const router = useRouter()
-  const session = getServerSession()
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email address')
