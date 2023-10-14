@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 
-
 export default function Home() {
   const [login, setLogin] = useState(true)
   const router = useRouter()
@@ -67,7 +66,7 @@ export default function Home() {
         }
       }}>Login</div>
       <p className='createAnAccountNotification'>
-      Don’t have an account? <span onClick={() => {
+      Don’t have an account ? <span onClick={() => {
         setLogin(false)
       }} data-testid="span-1">Create account</span>
       </p>
@@ -100,7 +99,7 @@ export default function Home() {
         <h1>Create account</h1>
         <p>Let’s get you started sharing your links!</p>
       </div>
-      <div className="createAccountForm">
+      <div className="createAccountInputs">
       <div className="firstCreateAccountForm">
                 <label htmlFor="emailAddress">Email address</label>
                 <Field type="text" name="email" placeholder='e.g. alex@email.com'/>
@@ -117,7 +116,7 @@ export default function Home() {
                 <ErrorMessage name="repassword" component="div" className="error" />
         </div>
         <button className='createAccountButton' type='submit'>Create new account</button>
-        <p>Already have an account? <span onClick={() => {
+        <p>Already have an account ? <span onClick={() => {
           setLogin(true)
         }} data-testid="span-2">Login</span></p>
       </div>

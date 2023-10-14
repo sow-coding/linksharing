@@ -5,4 +5,180 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0 0;
+}
+body .loginForm .logoOnLoginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .loginForm .logoOnLoginForm svg {
+  margin-right: 15px;
+}
+body .loginForm .logoOnLoginForm h2 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+body .loginForm .inputsLoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .loginForm .inputsLoginForm span {
+  color: #633CFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+body .loginForm .inputsLoginForm span:hover {
+  cursor: pointer;
+}
+body .loginForm .inputsLoginForm div {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+body .loginForm .inputsLoginForm div input {
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid #D9D9D9;
+  background: #FFF;
+  height: 24px;
+  padding: 12px 0px;
+  padding-left: 20px;
+  width: 364px;
+}
+body .loginForm .inputsLoginForm .loginButton {
+  width: 100%;
+  border-radius: 8px;
+  padding: 12px 0;
+  display: flex;
+  text-align: center;
+  background-color: #633CFF;
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+body .loginForm .inputsLoginForm .loginButton:hover {
+  cursor: pointer;
+}
+body .loginForm .logoFormText h1 {
+  color: #333;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+body .loginForm .logoFormText p {
+  color: #737373;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+body .createAccountForm .logoOnLoginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .createAccountForm .logoOnLoginForm svg {
+  margin-right: 15px;
+}
+body .createAccountForm .logoOnLoginForm h2 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+body .createAccountForm .createAccountText h1 {
+  color: #333;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+  margin-bottom: 0;
+}
+body .createAccountForm .createAccountText p {
+  color: #737373;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  margin-bottom: 20px;
+}
+body .createAccountForm .createAccountInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .createAccountForm .createAccountInputs span {
+  color: #633CFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+body .createAccountForm .createAccountInputs span:hover {
+  cursor: pointer;
+}
+body .createAccountForm .createAccountInputs div {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+body .createAccountForm .createAccountInputs div input {
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid #D9D9D9;
+  background: #FFF;
+  height: 24px;
+  padding: 12px 0px;
+  padding-left: 20px;
+  width: 364px;
+}
+body .createAccountForm .createAccountInputs .createAccountButton {
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 14px 0;
+  display: flex;
+  border: none;
+  background-color: #633CFF;
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+body .createAccountForm .createAccountInputs .createAccountButton:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 460px) {
+  .loginFormText {
+    width: 75%;
+    margin-left: 50px;
+  }
+  .inputsLoginForm div input {
+    width: 279px !important;
+  }
+  .inputsLoginForm .loginButton {
+    width: 300px !important;
+  }
+  .createAccountText {
+    width: 75%;
+    margin-left: 50px;
+  }
+  .createAccountInputs div input {
+    width: 279px !important;
+  }
+  .createAccountInputs .createAccountButton {
+    width: 300px !important;
+  }
 }/*# sourceMappingURL=global.css.map */
