@@ -1,13 +1,18 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
+import { signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+
 
 export default function Home() {
   const [login, setLogin] = useState(true)
-
+  const router = useRouter()
+  const session = getServerSession()
   const validationSchema = Yup.object({
-    username: Yup.string()
+    email: Yup.string()
       .email('Invalid email address')
       .required('Required'),
     password: Yup.string()
@@ -20,12 +25,14 @@ export default function Home() {
 
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
   return (
-    login === true ? <form className='loginForm' data-testid="loginForm">
+    login === true ? 
+    
+    <form className='loginForm' data-testid="loginForm">
     <div className="logoOnLoginForm"> 
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32"><path fill="#633CFF" fill-rule="evenodd" d="M4.619 27.38c1.954 1.953 5.095 1.953 11.38 1.953 6.286 0 9.429 0 11.38-1.953 1.954-1.95 1.954-5.095 1.954-11.38 0-6.286 0-9.428-1.953-11.381C25.43 2.667 22.285 2.667 16 2.667c-6.286 0-9.428 0-11.381 1.952-1.952 1.954-1.952 5.095-1.952 11.38 0 6.286 0 9.429 1.952 11.38Zm8.047-15.713A4.333 4.333 0 1 0 17 16a1 1 0 0 1 2 0 6.333 6.333 0 1 1-6.334-6.334 1 1 0 1 1 0 2Zm11 4.333a4.333 4.333 0 0 1-4.333 4.333 1 1 0 1 0 0 2A6.333 6.333 0 1 0 13 16a1 1 0 1 0 2 0 4.334 4.334 0 0 1 8.666 0Z" clip-rule="evenodd"/></svg>
       <h2>devlinks</h2>
@@ -37,8 +44,8 @@ export default function Home() {
     <div className="inputsLoginForm">
       <div className="firstInputLoginForm">
         <label htmlFor="emailAddress">Email address</label>
-        <input type="text" placeholder='e.g. alex@email.com' value={formData.username} onChange={(e) => {
-          setFormData({ ...formData, username: e.target.value })
+        <input type="text" placeholder='e.g. alex@email.com' value={formData.email} onChange={(e) => {
+          setFormData({ ...formData, email: e.target.value })
   }}/>
       </div>
       <div className="secondInputLoginForm">
@@ -47,25 +54,45 @@ export default function Home() {
           setFormData({ ...formData, password: e.target.value })
         }}/>
       </div>
-      <div className='loginButton' >Login</div>
+      <div className='loginButton' onClick={ async ()  =>  {
+        const response = await signIn("credentials", {
+          email: formData.email,
+          password: formData.password,
+          redirect: false,
+        })
+        if (response?.error) {
+          console.log("auth failed")
+        }
+        if(!response?.error) {
+          router.push("/homePage")
+          router.refresh()
+        }
+      }}>Login</div>
       <p className='createAnAccountNotification'>
       Don’t have an account? <span onClick={() => {
         setLogin(false)
       }} data-testid="span-1">Create account</span>
       </p>
     </div>
-  </form> : <Formik
-              initialValues={{
-                username: '',
-                password: '',
-                repassword: '',
-              }}
-              validationSchema={validationSchema}
-              onSubmit={(values) => {
-                // Handle form submission here
-                console.log(values)
-              }}
-            >
+  </form> : 
+  
+  <Formik
+  initialValues={{
+    email: '',
+    password: '',
+    repassword: '',
+  }}
+  validationSchema={validationSchema}
+  onSubmit={ async (values) => {
+    const {repassword, ...allOthersValues} = values
+    // Handle form submission here
+    const reponse = await fetch ('/api/auth/register', {
+      method: "POST",
+      body: JSON.stringify(allOthersValues)
+    })
+    
+  }}              
+  >
     <Form data-testid="createAccountForm" className='createAccountForm'>
       <div className="logoOnLoginForm">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32"><path fill="#633CFF" fill-rule="evenodd" d="M4.619 27.38c1.954 1.953 5.095 1.953 11.38 1.953 6.286 0 9.429 0 11.38-1.953 1.954-1.95 1.954-5.095 1.954-11.38 0-6.286 0-9.428-1.953-11.381C25.43 2.667 22.285 2.667 16 2.667c-6.286 0-9.428 0-11.381 1.952-1.952 1.954-1.952 5.095-1.952 11.38 0 6.286 0 9.429 1.952 11.38Zm8.047-15.713A4.333 4.333 0 1 0 17 16a1 1 0 0 1 2 0 6.333 6.333 0 1 1-6.334-6.334 1 1 0 1 1 0 2Zm11 4.333a4.333 4.333 0 0 1-4.333 4.333 1 1 0 1 0 0 2A6.333 6.333 0 1 0 13 16a1 1 0 1 0 2 0 4.334 4.334 0 0 1 8.666 0Z" clip-rule="evenodd"/></svg>
@@ -78,8 +105,8 @@ export default function Home() {
       <div className="createAccountForm">
       <div className="firstCreateAccountForm">
                 <label htmlFor="emailAddress">Email address</label>
-                <Field type="text" name="username" placeholder='e.g. alex@email.com'/>
-                <ErrorMessage name="username" component="div" className="error" />
+                <Field type="text" name="email" placeholder='e.g. alex@email.com'/>
+                <ErrorMessage name="email" component="div" className="error" />
       </div>
       <div className="secondCreateAccountForm">
                 <label htmlFor="Password">Password</label>
