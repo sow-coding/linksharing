@@ -1,0 +1,66 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    & .navbarLeft {
+        margin-left: 30px;
+        display: flex;
+        align-items: center;
+        & svg {
+            margin-right: 15px;
+        }
+    }
+    & .navbarCenter {
+        display: flex;
+        align-items: center;
+        & div {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+            border-radius: 8px;
+            background: #EFEBFF;
+            padding: 15px 13px;
+            &:hover {
+                cursor: pointer;
+            }
+            & p {
+                margin: 0 0 0 10px;
+            }
+        }
+    }
+    & .navbarRight {
+            border-radius: 8px;
+            border: 1px solid  #633CFF;
+            background-color: white;
+            padding: 15px 17px;
+            margin-right: 30px;
+            &:hover {
+                cursor: pointer;
+            }
+            & p {
+                margin: 0 0;
+                color: #633CFF;
+            }
+    }
+}
+
+@media (max-width: 590px) {
+    .linksButton {
+        & p {
+            display: none!important;
+        }
+    }
+    .profileDetailsButton {
+        & p {
+            display: none!important;
+        }
+    }
+    .navbarLeft {
+        & h2 {
+            display: none!important;
+        }
+    }
+}
+

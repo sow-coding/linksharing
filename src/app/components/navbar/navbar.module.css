@@ -1,0 +1,59 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+.navbar .navbarLeft {
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+}
+.navbar .navbarLeft svg {
+  margin-right: 15px;
+}
+.navbar .navbarCenter {
+  display: flex;
+  align-items: center;
+}
+.navbar .navbarCenter div {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  border-radius: 8px;
+  background: #EFEBFF;
+  padding: 15px 13px;
+}
+.navbar .navbarCenter div:hover {
+  cursor: pointer;
+}
+.navbar .navbarCenter div p {
+  margin: 0 0 0 10px;
+}
+.navbar .navbarRight {
+  border-radius: 8px;
+  border: 1px solid #633CFF;
+  background-color: white;
+  padding: 15px 17px;
+  margin-right: 30px;
+}
+.navbar .navbarRight:hover {
+  cursor: pointer;
+}
+.navbar .navbarRight p {
+  margin: 0 0;
+  color: #633CFF;
+}
+
+@media (max-width: 590px) {
+  .linksButton p {
+    display: none !important;
+  }
+  .profileDetailsButton p {
+    display: none !important;
+  }
+  .navbarLeft h2 {
+    display: none !important;
+  }
+}/*# sourceMappingURL=navbar.module.css.map */

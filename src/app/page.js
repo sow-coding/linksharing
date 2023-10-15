@@ -47,7 +47,7 @@ export default function Home() {
       </div>
       <div className="secondInputLoginForm">
         <label htmlFor="Password">Password</label>
-        <input type="text" placeholder='Enter your password' value={formData.password} onChange={(e) => {
+        <input type="password" placeholder='Enter your password' value={formData.password} onChange={(e) => {
           setFormData({ ...formData, password: e.target.value })
         }}/>
       </div>
