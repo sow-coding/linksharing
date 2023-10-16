@@ -1,0 +1,72 @@
+.customLinks {
+  width: 60%;
+}
+.customLinks h1 {
+  color: #333;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+.customLinks p {
+  color: #737373;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  margin: 25px 0;
+}
+.customLinks .addNewLinkButton {
+  border-radius: 8px;
+  border: 1px solid #633CFF;
+  background-color: white;
+  padding: 15px 17px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+.customLinks .addNewLinkButton:hover {
+  cursor: pointer;
+}
+.customLinks .addNewLinkButton p {
+  margin: 0 0;
+  color: #633CFF;
+}
+.customLinks .linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 50px 0 90px 0;
+}
+.customLinks .linksContainer h1 {
+  color: #333;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+.customLinks .linksContainer p {
+  color: #737373;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  text-align: center;
+}
+.customLinks .linksButton {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.customLinks .linksButton div {
+  border-radius: 8px;
+  background-color: #633CFF;
+  height: 24px;
+  color: white;
+  padding: 10px 27px;
+}
+.customLinks .linksButton div:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=customLinks.module.css.map */

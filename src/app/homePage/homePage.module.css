@@ -4,4 +4,10 @@
   height: 100vh;
   flex-direction: column;
   align-items: center;
+}
+.homePage .linksApp {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }/*# sourceMappingURL=homePage.module.css.map */
