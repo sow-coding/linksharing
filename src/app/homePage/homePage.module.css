@@ -8,6 +8,6 @@
 .homePage .linksApp {
   margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }/*# sourceMappingURL=homePage.module.css.map */

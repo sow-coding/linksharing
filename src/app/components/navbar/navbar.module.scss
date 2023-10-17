@@ -49,10 +49,16 @@
 
 .buttonSelected {
     background-color: #EFEBFF;
+    & p {
+        color: #633CFF;
+    }
 }
 
 .buttonUnSelected {
     background-color: white;
+    & p {
+        color: #000;
+    }
 }
 
 @media (max-width: 590px) {

@@ -70,3 +70,27 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .customLinks {
+        width: 90%!important;
+    }
+}
+
+@media (max-width: 425px) {
+    .linksButton {
+        & div {
+            margin: 0 0 25px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center!important;
+        }
+    }
+    .linksContainer {
+        margin-bottom: 50px!important;
+        & h1 {
+            font-size: 27px!important;
+            margin-bottom: 0!important;
+        }
+    }
+}

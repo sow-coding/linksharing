@@ -1,3 +1,60 @@
-.linksContainer {
-    width: 30%;
+.linksContainerDiv {
+    width: 307px;
+    height: 631px;
+    background-color: white;
+    border-radius: 40px;
+    border: 1px solid #737373;
+    padding: 20px 10px;
+    & .underLinksContainerDiv {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        border-radius: 40px;
+        border: 1px solid #737373;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & .popContainer {
+            width: 96px;
+            height: 96px;
+            border-radius: 50px;
+            background-color: #EEE;
+            margin-top: 50px;
+        }
+        & .textContainer {
+            width: 160px;
+            height: 16px;
+            background-color: #EEE;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+        & .littleTextContainer {
+            width: 72px;
+            height: 8px;
+            background-color: #EEE;
+            margin-bottom: 10px;
+            border-radius: 15px;
+        }
+        & .linksInTheContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 60%;
+            & div {
+                background-color: #EEE;
+                border-radius: 8px;
+                width: 237px;
+                height: 54px;
+                margin: 15px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .linksContainerDiv {
+        display: none;
+    }
 }
