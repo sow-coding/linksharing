@@ -1,15 +1,99 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 
 function CustomLinks() {
+  const [links, setLinks] = useState<string[]>([])
+  
+
+  interface ToggleButtonProps {
+    options: string[];
+  }  
+  const ToggleButton: React.FC<ToggleButtonProps> = ({ options }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+  
+    const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+  
+    const handleOptionClick = (option: string) => {
+      setSelectedOption(option);
+      setIsOpen(false);
+    };
+  
+    return (
+      <div className="dropdown">
+        <button className="toggle-button" onClick={toggleDropdown}>
+          {selectedOption || 'Select an option'}
+        </button>
+        {isOpen && (
+          <ul className="dropdown-content">
+            {options.map((option, index) => (
+              <li key={index} onClick={() => handleOptionClick(option)}>
+                {option}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  };
+
+  const options = ['Github', 'Twitter', 'Youtube', 'Facebook'];
+
+
+  function Link(props) {
+    return (
+      <div className='link'>
+        <div className="linkTop">
+          <div className="linkTopLeft">
+            <p>Link #{props.index}</p>
+          </div>
+          <p className={`${props.linkRank}`} onClick={(e) => {
+            const nameOfClasse:string = e.currentTarget.className
+            const nameOfClasseTurned:number = parseInt(nameOfClasse, 10)
+            if (props.linkRank === nameOfClasseTurned) {
+              setLinks((prevLinks) => {
+                const updatedLinks = [...prevLinks];
+                updatedLinks.splice(props.index, 1);
+                return updatedLinks;
+              });
+            } 
+          }}>Remove</p>
+        </div>
+        <div className="linkInputs">
+          <div className="linkFirstInput">
+            <label htmlFor="platform">Platform</label>
+            <ToggleButton options={options}/>
+              {/*<svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
+                <path d="M1 1L7 7L13 1" stroke="#633CFF" stroke-width="2"/>
+                </svg>*/}
+          </div>
+          
+          <div className="linkSecondInput">
+            <label htmlFor="link">Link</label>
+            <input type="text" placeholder='e.g. https://www.github.com/johnappleseed'/>
+          </div>
+        </div>
+      </div>
+    
+    )
+  }
+
+
   return (
     <div className='customLinks'>
         <h1>Custom your links</h1>
         <p>Add/edit/remove links below and then share all your profiles with the world!</p>
-        <div className="addNewLinkButton">
+        <div className="addNewLinkButton" onClick={() => {
+          setLinks([...links, "one link added"])
+        }}>
             <p>+ Add new link</p>
         </div>
         <div className="linksContainer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="161" viewBox="0 0 250 161" fill="none">
+          {links.length === 0 ? 
+            <div className="linksContainerChild">
+              <svg xmlns="http://www.w3.org/2000/svg" width="250" height="161" viewBox="0 0 250 161" fill="none">
     <path opacity="0.3" d="M48.6936 15.4213C23.3786 25.2238 4.59362 50.0679 0.857884 80.1285C-2.26282 105.459 5.19347 133.446 49.0884 141.419C134.494 156.939 222.534 158.754 242.952 116.894C263.369 75.0336 235.427 8.00293 192.079 3.36363C157.683 -0.326546 98.1465 -3.7206 48.6936 15.4213Z" fill="white"/>
     <path d="M157.022 9.56714H93.044C89.0309 9.56714 85.7776 12.8204 85.7776 16.8336V137.744C85.7776 141.757 89.0309 145.01 93.044 145.01H157.022C161.036 145.01 164.289 141.757 164.289 137.744V16.8336C164.289 12.8204 161.036 9.56714 157.022 9.56714Z" fill="#333333"/>
     <path opacity="0.03" d="M125.033 140.872C128.174 140.872 130.72 138.326 130.72 135.185C130.72 132.044 128.174 129.498 125.033 129.498C121.892 129.498 119.346 132.044 119.346 135.185C119.346 138.326 121.892 140.872 125.033 140.872Z" fill="#333333"/>
@@ -47,9 +131,13 @@ function CustomLinks() {
     <path d="M139.559 113.295C140.887 107.979 142.884 102.793 144.16 97.4252C145.003 93.8717 150.455 79.0199 151.981 74.6463C152.451 73.3024 152.854 71.6775 151.943 70.5841C151.635 70.2644 151.252 70.0272 150.829 69.8946C150.406 69.7619 149.956 69.7379 149.521 69.8248C148.643 70.008 147.833 70.4312 147.182 71.0473C145.663 72.3836 142.862 78.9971 140.811 78.9895C138.329 78.9895 139.498 72.1558 139.43 70.8423C139.149 65.1855 139.566 57.9342 137.357 52.6191C135.717 48.6708 131.647 49.2023 130.69 53.4696C129.733 57.7368 129.771 75.6182 129.771 75.6182C129.771 75.6182 113.887 72.8924 111.176 77.7367C108.465 82.581 113.044 113.355 113.044 113.355L139.559 113.295Z" fill="#F4A28C"/>
     <path d="M141.495 160.5L141.206 111.594L111.525 105.079L99.574 160.5H141.495Z" fill="#633CFF"/>
     <path opacity="0.1" d="M141.495 160.5L141.206 111.594L127.038 108.481L124.502 160.5H141.495Z" fill="#333333"/>
-            </svg>
+              </svg>
             <h1>Let´s get you started</h1>
             <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
+            </div>
+          :
+          links.map((l, index) => <Link key={index} index={index} linkRank={index}/>)}
+            
         </div>
         <div className="linksButton">
             <div>Save</div>
