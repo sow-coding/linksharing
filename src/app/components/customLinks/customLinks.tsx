@@ -1,10 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 
-function CustomLinks() {
-  const [links, setLinks] = useState<string[]>([])
+function CustomLinks({links, setLinks}) {
+  //const [links, setLinks] = useState<string[]>([])
   
-
   interface ToggleButtonProps {
     options: string[];
   }  
@@ -24,7 +23,7 @@ function CustomLinks() {
     return (
       <div className="dropdown">
         <button className="toggle-button" onClick={toggleDropdown}>
-          {selectedOption || 'Select an option'}
+          {selectedOption || 'Github'}
         </button>
         {isOpen && (
           <ul className="dropdown-content">
