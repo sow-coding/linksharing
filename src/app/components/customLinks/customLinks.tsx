@@ -1,91 +1,130 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
+import { LinkContextProvider, LinkInputContext } from '../../context/linkInputContext';
+import { PlatformContextProvider, PlatformSelectedContext } from '../../context/platformSelectedContext';
 
-function CustomLinks({links, setLinks}) {
-  //const [links, setLinks] = useState<string[]>([])
-  
-  interface ToggleButtonProps {
-    options: string[];
-  }  
-  const ToggleButton: React.FC<ToggleButtonProps> = ({ options }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
-  
-    const toggleDropdown = () => {
-      setIsOpen(!isOpen);
-    };
-  
-    const handleOptionClick = (option: string) => {
-      setSelectedOption(option);
-      setIsOpen(false);
-    };
-  
-    return (
-      <div className="dropdown">
-        <button className="toggle-button" onClick={toggleDropdown}>
-          {selectedOption || 'Github'}
-        </button>
-        {isOpen && (
-          <ul className="dropdown-content">
-            {options.map((option, index) => (
-              <li key={index} onClick={() => handleOptionClick(option)}>
-                {option}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
-  };
+interface LinkProps {
+  index: number;
+  deleteLink: () => void;
+}
 
-  const options = ['Github', 'Twitter', 'Youtube', 'Facebook'];
-
-
-  function Link(props) {
-    return (
-      <div className='link'>
-        <div className="linkTop">
-          <div className="linkTopLeft">
-            <p>Link #{props.index}</p>
-          </div>
-          <p className={`${props.linkRank}`} onClick={(e) => {
-            const nameOfClasse:string = e.currentTarget.className
-            const nameOfClasseTurned:number = parseInt(nameOfClasse, 10)
-            if (props.linkRank === nameOfClasseTurned) {
-              setLinks((prevLinks) => {
-                const updatedLinks = [...prevLinks];
-                updatedLinks.splice(props.index, 1);
-                return updatedLinks;
-              });
-            } 
-          }}>Remove</p>
-        </div>
-        <div className="linkInputs">
-          <div className="linkFirstInput">
-            <label htmlFor="platform">Platform</label>
-            <ToggleButton options={options}/>
-              {/*<svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
-                <path d="M1 1L7 7L13 1" stroke="#633CFF" stroke-width="2"/>
-                </svg>*/}
-          </div>
-          
-          <div className="linkSecondInput">
-            <label htmlFor="link">Link</label>
-            <input type="text" placeholder='e.g. https://www.github.com/johnappleseed'/>
-          </div>
-        </div>
-      </div>
-    
-    )
-  }
-
+function Link(props: LinkProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [platformSelected, setPlatformSelected] = useState("Github")
+  const [linkInput, setLinkInput] = useState("")
+  //const { linkInput, setLinkInput } = useContext(LinkInputContext)!; 
+  //const { platformSelected, setPlatformSelected } = useContext(PlatformSelectedContext)!; 
 
   return (
-    <div className='customLinks'>
+    <div className='link'>
+      <div className="linkTop">
+        <div className="linkTopLeft">
+          <p>Link #{props.index  + 1}</p>
+        </div>
+        {/* props.linkRank et nn props.index */}
+        <p className={`${props.index}`} onClick={() => {
+          props.deleteLink()
+        }}>Remove</p>
+      </div>
+      <div className="linkInputs">
+        <div className="linkFirstInput">
+          <label htmlFor="platform">Platform</label>
+          <div className='togglePlatform' onClick={() => {  isOpen === false && setIsOpen(true) }}>
+            <p className={`${isOpen === true && "none"}`}>{platformSelected}</p>
+            {isOpen === true && 
+            <ul className='ulTogglePlatform'>
+              <li onClick={() => {
+                setPlatformSelected("Github");
+                setIsOpen(false);
+              }}>Github</li>
+              <li onClick={() => {
+                setPlatformSelected("Facebook");
+                setIsOpen(false);
+              }}>Facebook</li>
+              <li onClick={() => {
+                setPlatformSelected("Youtube");
+                setIsOpen(false);
+              }}>Youtube</li>
+              <li onClick={() => {
+                setPlatformSelected("Twitter");
+                setIsOpen(false);
+              }}>Twitter</li>
+            </ul>
+            }
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
+              <path d="M1 1L7 7L13 1" stroke="#633CFF" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        
+        <div className="linkSecondInput">
+          <label htmlFor="link">Link</label>
+          <input
+            type="text"
+            placeholder="e.g. https://www.github.com/johnappleseed"
+            value={linkInput}
+            onChange={(e) => {setLinkInput(e.currentTarget.value)}}
+          />
+        </div>
+      </div>
+    </div>
+  
+  )
+}
+
+function LinkDisplayed () {
+  return (
+    <a href={``}>{}</a>
+  )
+}
+
+function CustomLinks() {
+  const [links, setLinks] = useState([])
+
+  const deleteLink = (index) => {
+    setLinks((prevLinks) => {
+      const updatedLinks = [...prevLinks];
+      updatedLinks.splice(index, 1);
+      return updatedLinks;
+    });
+  };
+
+  function LinksContainer() {
+    const MAX_DIVS = 5; 
+  
+    return (
+      <div className='linksContainerDiv'>
+        <div className="underLinksContainerDiv">
+          <div className="popContainer"></div>
+          <div className="textContainer"></div>
+          <div className="littleTextContainer"></div>
+          <div className="linksInTheContainer">
+            {links.slice(0, MAX_DIVS).map((link, index) => (
+              <div key={index}>{index + 1}</div>
+            ))}
+            {links.length < MAX_DIVS && (
+              Array.from({ length: MAX_DIVS - links.length }).map((_, index) => (
+                <div key={links.length + index}></div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+  <>
+      <LinksContainer />
+      <div className='customLinks'>
         <h1>Custom your links</h1>
         <p>Add/edit/remove links below and then share all your profiles with the world!</p>
         <div className="addNewLinkButton" onClick={() => {
-          setLinks([...links, "one link added"])
+          const newLink = {
+            platform: "",
+            link: ""
+          };         
+          setLinks((prevLinks) => [...prevLinks, newLink]);
         }}>
             <p>+ Add new link</p>
         </div>
@@ -135,13 +174,15 @@ function CustomLinks({links, setLinks}) {
             <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
             </div>
           :
-          links.map((l, index) => <Link key={index} index={index} linkRank={index}/>)}
+          links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}}/> )}
             
         </div>
         <div className="linksButton">
             <div>Save</div>
         </div>
-    </div>
+      </div>
+  </>
+
   )
 }
 
