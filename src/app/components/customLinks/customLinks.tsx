@@ -1,27 +1,26 @@
 "use client"
 import React, { useState, createContext, useContext } from 'react'
-import { LinkContextProvider, LinkInputContext } from '../../context/linkInputContext';
-import { PlatformContextProvider, PlatformSelectedContext } from '../../context/platformSelectedContext';
 
 interface LinkProps {
   index: number;
+  linksInThePhone: any;
+  setLinksInThePhone: any;
   deleteLink: () => void;
 }
 
 function Link(props: LinkProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [platformSelected, setPlatformSelected] = useState("Github")
+  const [platformSelected, setPlatformSelected] = useState<string>("Github")
   const [linkInput, setLinkInput] = useState("")
-  //const { linkInput, setLinkInput } = useContext(LinkInputContext)!; 
-  //const { platformSelected, setPlatformSelected } = useContext(PlatformSelectedContext)!; 
 
   return (
-    <div className='link'>
+    <div className='link' onClick={() => {
+      isOpen === true && setIsOpen(false)
+    }}>
       <div className="linkTop">
         <div className="linkTopLeft">
           <p>Link #{props.index  + 1}</p>
         </div>
-        {/* props.linkRank et nn props.index */}
         <p className={`${props.index}`} onClick={() => {
           props.deleteLink()
         }}>Remove</p>
@@ -33,27 +32,58 @@ function Link(props: LinkProps) {
             <p className={`${isOpen === true && "none"}`}>{platformSelected}</p>
             {isOpen === true && 
             <ul className='ulTogglePlatform'>
-              <li onClick={() => {
+              <div onClick={() => {
                 setPlatformSelected("Github");
+                const modifyFirstPlatform = () => {
+                  const newLinksInThePhone = [...props.linksInThePhone]
+                  newLinksInThePhone[props.index] = "Github"
+                  props.setLinksInThePhone(newLinksInThePhone)
+                }
+                modifyFirstPlatform()
                 setIsOpen(false);
-              }}>Github</li>
-              <li onClick={() => {
+              }}>Github
+              <div className='platformLign'></div></div>
+              <div onClick={() => {
                 setPlatformSelected("Facebook");
+                const modifySecondPlatform = () => {
+                  const newLinksInThePhone = [...props.linksInThePhone]
+                  newLinksInThePhone[props.index] = "Facebook"
+                  props.setLinksInThePhone(newLinksInThePhone)
+                }
+                modifySecondPlatform()
                 setIsOpen(false);
-              }}>Facebook</li>
-              <li onClick={() => {
+              }}>Facebook
+              <div className='platformLign'></div></div>
+              <div onClick={() => {
                 setPlatformSelected("Youtube");
+                const modifyThirdPlatform = () => {
+                  const newLinksInThePhone = [...props.linksInThePhone]
+                  newLinksInThePhone[props.index] = "Youtube"
+                  props.setLinksInThePhone(newLinksInThePhone)
+                }
+                modifyThirdPlatform()
                 setIsOpen(false);
-              }}>Youtube</li>
-              <li onClick={() => {
+              }}>Youtube
+              <div className='platformLign'></div></div>
+              <div onClick={() => {
                 setPlatformSelected("Twitter");
+                const modifyFourthPlatform = () => {
+                  const newLinksInThePhone = [...props.linksInThePhone]
+                  newLinksInThePhone[props.index] = "Twitter"
+                  props.setLinksInThePhone(newLinksInThePhone)
+                }
+                modifyFourthPlatform()
                 setIsOpen(false);
-              }}>Twitter</li>
+              }}>Twitter
+              <div className='platformLign'></div>
+              </div>
             </ul>
             }
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
+            {isOpen ? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
+              <path d="M13 8L7 2L1 8" stroke="#633CFF" stroke-width="2"/>
+            </svg> :             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
               <path d="M1 1L7 7L13 1" stroke="#633CFF" stroke-width="2"/>
-            </svg>
+            </svg>}
           </div>
         </div>
         
@@ -68,21 +98,20 @@ function Link(props: LinkProps) {
         </div>
       </div>
     </div>
-  
-  )
-}
-
-function LinkDisplayed () {
-  return (
-    <a href={``}>{}</a>
   )
 }
 
 function CustomLinks() {
   const [links, setLinks] = useState([])
+  const [linksInThePhone, setLinksInThePhone] = useState([])
 
   const deleteLink = (index) => {
     setLinks((prevLinks) => {
+      const updatedLinks = [...prevLinks];
+      updatedLinks.splice(index, 1);
+      return updatedLinks;
+    });
+    setLinksInThePhone((prevLinks) => {
       const updatedLinks = [...prevLinks];
       updatedLinks.splice(index, 1);
       return updatedLinks;
@@ -99,12 +128,14 @@ function CustomLinks() {
           <div className="textContainer"></div>
           <div className="littleTextContainer"></div>
           <div className="linksInTheContainer">
-            {links.slice(0, MAX_DIVS).map((link, index) => (
-              <div key={index}>{index + 1}</div>
+            {linksInThePhone.slice(0, MAX_DIVS).map((link, index) => (
+              <div key={index}>{
+                  linksInThePhone[index]
+                }</div>
             ))}
-            {links.length < MAX_DIVS && (
-              Array.from({ length: MAX_DIVS - links.length }).map((_, index) => (
-                <div key={links.length + index}></div>
+            {linksInThePhone.length < MAX_DIVS && (
+              Array.from({ length: MAX_DIVS - linksInThePhone.length }).map((_, index) => (
+                <div key={linksInThePhone.length + index}></div>
               ))
             )}
           </div>
@@ -125,6 +156,7 @@ function CustomLinks() {
             link: ""
           };         
           setLinks((prevLinks) => [...prevLinks, newLink]);
+          setLinksInThePhone([...linksInThePhone, "Github"])
         }}>
             <p>+ Add new link</p>
         </div>
@@ -174,7 +206,7 @@ function CustomLinks() {
             <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
             </div>
           :
-          links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}}/> )}
+          links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}} linksInThePhone={linksInThePhone} setLinksInThePhone={setLinksInThePhone}/> )}
             
         </div>
         <div className="linksButton">
