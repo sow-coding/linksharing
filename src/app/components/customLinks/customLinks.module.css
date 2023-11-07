@@ -43,8 +43,6 @@
   align-items: center;
   width: 100%;
   margin: 50px 0 90px 0;
-  overflow-y: auto;
-  max-height: 375px;
 }
 .customLinks .linksContainer .linksContainerChild {
   display: flex;
@@ -146,6 +144,21 @@
   margin: 5px 0 25px 0;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+.togglePlatform .introListDropDown {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #D9D9D9;
+  background: #FFF;
+  margin-top: 5px;
+}
+.togglePlatform .introListDropDown p {
+  margin: 15px 0;
+  margin-left: 20px;
 }
 .togglePlatform svg {
   margin-right: 20px;
@@ -157,6 +170,10 @@
   cursor: pointer;
 }
 .togglePlatform .ulTogglePlatform {
+  position: absolute;
+  max-width: -webkit-fill-available;
+  top: 100%;
+  z-index: 1;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -168,15 +185,69 @@
   padding: 10px 40px 10px 40px;
 }
 .togglePlatform .ulTogglePlatform div {
-  margin: 5px 0;
+  margin: 10px 0;
   width: 100%;
+}
+.togglePlatform .ulTogglePlatform div .github {
+  display: flex;
+  align-items: center;
+}
+.togglePlatform .ulTogglePlatform div .github svg {
+  margin: 0 0;
+  width: 16px;
+  height: 16px;
+}
+.togglePlatform .ulTogglePlatform div .facebook {
+  display: flex;
+  align-items: center;
+}
+.togglePlatform .ulTogglePlatform div .facebook svg {
+  margin: 0 0;
+  width: 16px;
+  height: 16px;
+}
+.togglePlatform .ulTogglePlatform div .youtube {
+  display: flex;
+  align-items: center;
+}
+.togglePlatform .ulTogglePlatform div .youtube svg {
+  margin: 0 0;
+  width: 16px;
+  height: 16px;
+}
+.togglePlatform .ulTogglePlatform div .linkedin {
+  display: flex;
+  align-items: center;
+}
+.togglePlatform .ulTogglePlatform div .linkedin svg {
+  margin: 0 0;
+  width: 16px;
+  height: 16px;
+}
+.togglePlatform .ulTogglePlatform div .frontendmentor {
+  display: flex;
+  align-items: center;
+}
+.togglePlatform .ulTogglePlatform div .frontendmentor svg {
+  margin: 0 0;
+  width: 16px;
+  height: 16px;
+}
+.togglePlatform .ulTogglePlatform div p {
+  color: #333;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: start;
+  margin: 0 0 0 10px;
 }
 
 .platformLign {
   width: 80%;
   height: 1px;
   background-color: #D9D9D9;
-  margin-top: 7px;
+  margin: 7px 0 5px 0 !important;
 }
 
 .none {
@@ -203,6 +274,15 @@
     margin-bottom: 0 !important;
   }
 }
+.none {
+  display: none !important;
+}
+
+.maxHeight {
+  max-height: 375px !important;
+  overflow-y: auto !important;
+}
+
 .linksContainerDiv {
   width: 307px;
   background-color: white;
