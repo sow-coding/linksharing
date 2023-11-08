@@ -26,6 +26,7 @@
 }
 .navbar .navbarCenter div:hover {
   cursor: pointer;
+  background-color: #EFEBFF;
 }
 .navbar .navbarCenter div p {
   margin: 0 0 0 10px;
@@ -39,10 +40,14 @@
 }
 .navbar .navbarRight:hover {
   cursor: pointer;
+  background-color: #EFEBFF;
 }
 .navbar .navbarRight p {
   margin: 0 0;
   color: #633CFF;
+}
+.navbar .navbarRight svg {
+  display: none;
 }
 
 .buttonSelected {
@@ -68,5 +73,11 @@
   }
   .navbarLeft h2 {
     display: none !important;
+  }
+  .navbarRight p {
+    display: none;
+  }
+  .navbarRight svg {
+    display: block !important;
   }
 }/*# sourceMappingURL=navbar.module.css.map */

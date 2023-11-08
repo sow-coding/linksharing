@@ -23,6 +23,7 @@
             padding: 15px 13px;
             &:hover {
                 cursor: pointer;
+                background-color: #EFEBFF;
             }
             & p {
                 margin: 0 0 0 10px;
@@ -37,10 +38,14 @@
             margin-right: 30px;
             &:hover {
                 cursor: pointer;
+                background-color: #EFEBFF;
             }
             & p {
                 margin: 0 0;
                 color: #633CFF;
+            }
+            & svg {
+                display: none;
             }
     }
 }
@@ -75,6 +80,14 @@
     .navbarLeft {
         & h2 {
             display: none!important;
+        }
+    }
+    .navbarRight {
+        & p {
+            display: none;
+        }
+        & svg {
+            display: block!important;
         }
     }
 }

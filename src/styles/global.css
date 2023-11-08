@@ -58,6 +58,12 @@ body .loginForm .inputsLoginForm div input {
   padding-left: 20px;
   width: 364px;
 }
+body .loginForm .inputsLoginForm div input:active {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
+body .loginForm .inputsLoginForm div input:focus {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
 body .loginForm .inputsLoginForm .loginButton {
   width: 100%;
   border-radius: 8px;
@@ -73,6 +79,8 @@ body .loginForm .inputsLoginForm .loginButton {
 }
 body .loginForm .inputsLoginForm .loginButton:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  background-color: #BEADFF;
 }
 body .loginForm .logoFormText h1 {
   color: #333;
@@ -148,6 +156,12 @@ body .createAccountForm .createAccountInputs div input {
   padding-left: 20px;
   width: 364px;
 }
+body .createAccountForm .createAccountInputs div input:active {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
+body .createAccountForm .createAccountInputs div input:focus {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
 body .createAccountForm .createAccountInputs .createAccountButton {
   width: 100%;
   margin: 20px;
@@ -166,6 +180,8 @@ body .createAccountForm .createAccountInputs .createAccountButton {
 }
 body .createAccountForm .createAccountInputs .createAccountButton:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  background-color: #BEADFF;
 }
 
 @media (max-width: 460px) {

@@ -1,3 +1,12 @@
+input:focus {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25) !important;
+  border: 1px solid #633CFF !important;
+}
+input:active {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25) !important;
+  border: 1px solid #633CFF !important;
+}
+
 .customLinks {
   width: 60%;
   background-color: white;
@@ -32,10 +41,15 @@
 }
 .customLinks .addNewLinkButton:hover {
   cursor: pointer;
+  background-color: #EFEBFF;
 }
 .customLinks .addNewLinkButton p {
   margin: 0 0;
   color: #633CFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
 }
 .customLinks .linksContainer {
   display: flex;
@@ -78,6 +92,133 @@
   padding: 10px 27px;
 }
 .customLinks .linksButton div:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+  background-color: #BEADFF;
+}
+
+.githubInThePhone {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #1A1A1A !important;
+}
+.githubInThePhone .githubInThePhoneLeft {
+  display: flex;
+  align-items: center;
+  background-color: #1A1A1A !important;
+  margin-left: 20px !important;
+}
+.githubInThePhone .githubInThePhoneLeft p {
+  color: white;
+  margin-left: 5px;
+}
+.githubInThePhone .arrow {
+  margin-right: 20px;
+}
+.githubInThePhone:hover {
+  cursor: pointer;
+}
+
+.youtubeInThePhone {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #EE3939 !important;
+}
+.youtubeInThePhone .youtubeInThePhoneLeft {
+  display: flex;
+  align-items: center;
+  background-color: #EE3939 !important;
+  margin-left: 20px !important;
+}
+.youtubeInThePhone .youtubeInThePhoneLeft p {
+  color: white;
+  margin-left: 5px;
+}
+.youtubeInThePhone .arrow {
+  margin-right: 20px;
+}
+.youtubeInThePhone:hover {
+  cursor: pointer;
+}
+
+.facebookInThePhone {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #2442AC !important;
+}
+.facebookInThePhone .facebookInThePhoneLeft {
+  display: flex;
+  align-items: center;
+  background-color: #2442AC !important;
+  margin-left: 20px !important;
+}
+.facebookInThePhone .facebookInThePhoneLeft p {
+  color: white;
+  margin-left: 5px;
+}
+.facebookInThePhone .arrow {
+  margin-right: 20px;
+}
+.facebookInThePhone:hover {
+  cursor: pointer;
+}
+
+.linkedinInThePhone {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #2D68FF !important;
+}
+.linkedinInThePhone .linkedinInThePhoneLeft {
+  display: flex;
+  align-items: center;
+  background-color: #2D68FF !important;
+  margin-left: 20px !important;
+}
+.linkedinInThePhone .linkedinInThePhoneLeft p {
+  color: white;
+  margin-left: 5px;
+}
+.linkedinInThePhone .arrow {
+  margin-right: 20px;
+}
+.linkedinInThePhone:hover {
+  cursor: pointer;
+}
+
+.frontendmentorInThePhone {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #FFF !important;
+}
+.frontendmentorInThePhone .frontendmentorInThePhoneLeft {
+  display: flex;
+  align-items: center;
+  background-color: #FFF !important;
+  margin-left: 20px !important;
+}
+.frontendmentorInThePhone .frontendmentorInThePhoneLeft p {
+  color: #333;
+  margin-left: 5px;
+}
+.frontendmentorInThePhone .arrow {
+  margin-right: 20px;
+}
+.frontendmentorInThePhone:hover {
   cursor: pointer;
 }
 
@@ -159,6 +300,9 @@
 .togglePlatform .introListDropDown p {
   margin: 15px 0;
   margin-left: 20px;
+}
+.togglePlatform .introListDropDown:hover {
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
 }
 .togglePlatform svg {
   margin-right: 20px;
@@ -329,7 +473,7 @@
   width: 100%;
   height: 60%;
 }
-.linksContainerDiv .underLinksContainerDiv .linksInTheContainer div {
+.linksContainerDiv .underLinksContainerDiv .linksInTheContainer .linkInTheContainer {
   background-color: #EEE;
   display: flex;
   align-items: center;
