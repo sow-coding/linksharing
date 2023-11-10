@@ -1,18 +1,29 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import Navbar from '../components/navbar/navbar'
 import CustomLinks from '../components/customLinks/customLinks'
-import LinksContainer from '../components/linksContainer/linksContainer'
+import AppContext from '../context/appContext'
+import ProfilDetails from '../components/profilDetails/profilDetails'
+import LinksContext from '../context/linksContext'
 
 
 function HomePage() {
+  const [part, setPart] = useState("customLinks")
+  const [linksInTheApp, setLinksInTheApp] = useState(["GitHub"])
+
   return (
+    <AppContext.Provider value={part}>
+    <LinksContext.Provider value={linksInTheApp}>
     <div className='homePage'>
-      <Navbar/>
+      <Navbar setPart={setPart}/>
       <div className="linksApp">
-        {/*<LinksContainer links={links} setLinks={setLinks}/>*/}
-        <CustomLinks />
+        {
+          part === "customLinks" ? <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp}/> : <ProfilDetails />
+        }      
       </div>
     </div>
+    </LinksContext.Provider>
+    </AppContext.Provider>
   )
 }
 

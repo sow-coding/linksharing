@@ -6,6 +6,8 @@ interface LinkProps {
   linksInThePhone: any;
   setLinksInThePhone: any;
   deleteLink: () => void;
+  linksInTheApp: any;
+  setLinksInTheApp: any;
 }
 
 function Link(props: LinkProps) {
@@ -45,6 +47,7 @@ function Link(props: LinkProps) {
                   const newLinksInThePhone = [...props.linksInThePhone]
                   newLinksInThePhone[props.index] = "GitHub"
                   props.setLinksInThePhone(newLinksInThePhone)
+                  props.setLinksInTheApp(newLinksInThePhone)
                 }
                 modifyFirstPlatform()
                 setIsOpen(false);
@@ -69,6 +72,8 @@ function Link(props: LinkProps) {
                   const newLinksInThePhone = [...props.linksInThePhone]
                   newLinksInThePhone[props.index] = "Facebook"
                   props.setLinksInThePhone(newLinksInThePhone)
+                  props.setLinksInTheApp(newLinksInThePhone)
+
                 }
                 modifySecondPlatform()
                 setIsOpen(false);
@@ -93,6 +98,8 @@ function Link(props: LinkProps) {
                   const newLinksInThePhone = [...props.linksInThePhone]
                   newLinksInThePhone[props.index] = "YouTube"
                   props.setLinksInThePhone(newLinksInThePhone)
+                  props.setLinksInTheApp(newLinksInThePhone)
+
                 }
                 modifyThirdPlatform()
                 setIsOpen(false);
@@ -110,6 +117,8 @@ function Link(props: LinkProps) {
                   const newLinksInThePhone = [...props.linksInThePhone]
                   newLinksInThePhone[props.index] = "Linkedin"
                   props.setLinksInThePhone(newLinksInThePhone)
+                  props.setLinksInTheApp(newLinksInThePhone)
+
                 }
                 modifyFourthPlatform()
                 setIsOpen(false);
@@ -129,6 +138,8 @@ function Link(props: LinkProps) {
                   const newLinksInThePhone = [...props.linksInThePhone]
                   newLinksInThePhone[props.index] = "Frontend Mentor"
                   props.setLinksInThePhone(newLinksInThePhone)
+                  props.setLinksInTheApp(newLinksInThePhone)
+
                 }
                 modifyFifthPlatform()
                 setIsOpen(false);
@@ -162,7 +173,7 @@ function Link(props: LinkProps) {
   )
 }
 
-function CustomLinks() {
+function CustomLinks({setPart, setLinksInTheApp, linksInTheApp}) {
   const [links, setLinks] = useState([])
   const [linksInThePhone, setLinksInThePhone] = useState([])
 
@@ -330,10 +341,12 @@ function CustomLinks() {
             <p>Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
             </div>
           :
-          links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}} linksInThePhone={linksInThePhone} setLinksInThePhone={setLinksInThePhone}/> )}
+          links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}} linksInThePhone={linksInThePhone} setLinksInThePhone={setLinksInThePhone} linksInTheApp={linksInTheApp} setLinksInTheApp={setLinksInTheApp}/> )}
             
         </div>
-        <div className="linksButton">
+        <div className="linksButton" onClick={() => {
+          setPart("profilDetails")
+        }}>
             <div>Save</div>
         </div>
       </div>
