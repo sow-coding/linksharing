@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Like Sharing',
+  title: 'Link Sharing',
   description: 'SaaS to manage your links',
 }
 

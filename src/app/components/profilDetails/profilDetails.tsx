@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import LinksContext from '../../context/linksContext'
 
-function ProfilDetails() {
+function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
   const linksInTheApp = useContext(LinksContext)
 
   function LinksContainer() {
@@ -108,21 +108,27 @@ function ProfilDetails() {
           </svg>
           <h3>+ Upload Image</h3>
         </div>
-        <h6>Image must be below 1024x1024px. Use PNG or JPG format.</h6>
+        <h6>Image must be below 1024x1024px. <br></br>Use PNG or JPG format.</h6>
       </div>
       <div className="profilDetailsBottom">
         <div className="profilDetailsInputs">
           <div className='firstInput'>
           <label htmlFor="firstName">First Name*</label>
-          <input type="text" name='firstName' placeholder='e.g. John'/>
+          <input type="text" name='firstName' placeholder='e.g. John' onChange={(e) => {
+            setUserFirstName(e.target.value)
+          }}/>
           </div>
           <div className='secondInput'>
           <label htmlFor="lastName">Last Name*</label>
-          <input type="text" name='lastName' />
+          <input type="text" name='lastName' placeholder='e.g. Appleseed' onChange={(e) => {
+            setUserLastName(e.target.value)
+          }}/>
           </div>
           <div className='thirdInput'>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" placeholder='e.g. email@example.com'/>
+          <input type="email" name="email" placeholder='e.g. email@example.com' onChange={(e) => {
+            setUserEmail(e.target.value)
+          }}/>
           </div>
         </div>
       </div>
