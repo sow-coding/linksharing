@@ -48,6 +48,9 @@
   font-weight: 600;
   line-height: 150%;
 }
+.profilDetails .profilDetailsCenter div input {
+  display: none;
+}
 .profilDetails .profilDetailsCenter h6 {
   color: #737373;
   font-size: 12px;

@@ -45,6 +45,9 @@
                 font-weight: 600;
                 line-height: 150%; 
             }
+            & input {
+                display: none;
+            }
         }
         & h6 {
             color:  #737373;
