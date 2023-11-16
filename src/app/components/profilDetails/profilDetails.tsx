@@ -1,13 +1,14 @@
 import React, { useContext, useRef, useState } from 'react'
 import LinksContext from '../../context/linksContext'
+import { useRouter } from 'next/navigation'
 
 
 function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
   const linksInTheApp = useContext(LinksContext)
   const [selectedFile, setSelectedFile] = useState(null)
-
+  const router = useRouter()
   const fileInputRef = useRef(null);
-  
+
   const handleFileInputClick = () => {
     fileInputRef.current.click();
   };
@@ -143,7 +144,9 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
         </div>
       </div>
       <div className="linksButton">
-          <div>Save</div>
+          <div onClick={() => {
+            router.push('/previeuw')
+          }}>Save</div>
         </div>
     </form>
     </>

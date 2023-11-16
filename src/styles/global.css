@@ -3,6 +3,7 @@
 @import "../app/components/customLinks/customLinks.module.css";
 @import "../app/components/linksContainer/linksContainer.module.css";
 @import "../app/components/profilDetails/profilDetails.module.css";
+@import "../app/previeuw/previeuw.module.css";
 *:focus {
   outline: none;
 }
