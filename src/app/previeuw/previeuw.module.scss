@@ -51,13 +51,31 @@
     & .previeuwPhone {
         width: 17.5%;
         height: 60%;
-        background-color: blueviolet;
+        background-color: white;
         border-radius: 20px;
         z-index: 1;
         position: absolute;
         top: 50%; 
         left: 50%;
         transform: translate(-50%, -50%); 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.linksInThePrevieuwPhone {
+    width: 75%;
+    & div {
+        background-color: #EEE;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        width: 100%!important;
+        height: 54px!important;
+        margin: 15px 0!important;
     }
 }
 

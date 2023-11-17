@@ -5,7 +5,9 @@ import CustomLinks from '../components/customLinks/customLinks'
 import AppContext from '../context/appContext'
 import ProfilDetails from '../components/profilDetails/profilDetails'
 import LinksContext from '../context/linksContext'
-import UserInfosContext from '../context/userInfos'
+import PrevieuwContext from '../context/previeuwContext'
+import Previeuw from '../previeuw/page'
+
 
 
 function HomePage() {
@@ -14,18 +16,31 @@ function HomePage() {
   const [userEmail, setUserEmail] = useState()
   const [userFirstName, setUserFirstName] = useState()
   const [userLastName, setUserLastName] = useState()
-
+  const previeuw = {
+    userEmail: userEmail,
+    userFirstName: userFirstName,
+    userLastName: userLastName,
+    linksInTheApp: linksInTheApp
+  }
   return (
     <AppContext.Provider value={part}>
     <LinksContext.Provider value={linksInTheApp}>
+    <PrevieuwContext.Provider value={previeuw}>
     <div className='homePage'>
-      <Navbar setPart={setPart}/>
+      {part !== "Previeuw" && <Navbar setPart={setPart}/>}
       <div className="linksApp">
         {
-          part === "customLinks" ? <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp}/> : <ProfilDetails setUserEmail={setUserEmail} setUserFirstName={setUserFirstName} setUserLastName={setUserLastName}/>
+        part === "customLinks" ? (
+          <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp} />
+        ) : part === "Previeuw" ? (
+          <Previeuw setPart={setPart}/>
+        ) : (
+          <ProfilDetails setUserEmail={setUserEmail} setUserFirstName={setUserFirstName} setUserLastName={setUserLastName} setPart={setPart}/>
+        )
         }      
       </div>
     </div>
+    </PrevieuwContext.Provider>
     </LinksContext.Provider>
     </AppContext.Provider>
   )

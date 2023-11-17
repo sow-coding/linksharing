@@ -1,14 +1,15 @@
 import React, { useContext, useRef, useState } from 'react'
 import LinksContext from '../../context/linksContext'
 import { useRouter } from 'next/navigation'
+import PrevieuwContext from '../../context/previeuwContext'
 
 
-function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
+function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName, setPart}) {
   const linksInTheApp = useContext(LinksContext)
   const [selectedFile, setSelectedFile] = useState(null)
   const router = useRouter()
   const fileInputRef = useRef(null);
-
+  const previeuwInfos = useContext(PrevieuwContext)
   const handleFileInputClick = () => {
     fileInputRef.current.click();
   };
@@ -20,8 +21,12 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
       <div className='linksContainerDiv'>
         <div className="underLinksContainerDiv">
           <div className="popContainer"></div>
-          <div className="textContainer"></div>
-          <div className="littleTextContainer"></div>
+          <div className={`${previeuwInfos.userFirstName !== "" || previeuwInfos.userLastName !== "" ? "noTextContainer" : "textContainer"}`}>
+            <p>{previeuwInfos.userFirstName} {previeuwInfos.userLastName}</p>
+          </div>
+          <div className={`${previeuwInfos.userEmail !== "" ? "noLittleTextContainer" : "littleTextContainer"}`}>
+            <p>{previeuwInfos.userEmail}</p>
+          </div>
           <div className="linksInTheContainer">
             {linksInTheApp.slice(0, MAX_DIVS).map((link, index) => (
               <div key={index} className='linkInTheContainer'>
@@ -145,7 +150,7 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName}) {
       </div>
       <div className="linksButton">
           <div onClick={() => {
-            router.push('/previeuw')
+          setPart("Previeuw")
           }}>Save</div>
         </div>
     </form>
