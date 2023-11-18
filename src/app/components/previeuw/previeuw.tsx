@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext } from 'react'
-import PrevieuwContext from '../context/previeuwContext'
+import PrevieuwContext from '../../context/previeuwContext'
 
 function Previeuw({setPart}) {
   const previeuwInfos = useContext(PrevieuwContext)

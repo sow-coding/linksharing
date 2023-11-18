@@ -6,7 +6,7 @@ import AppContext from '../context/appContext'
 import ProfilDetails from '../components/profilDetails/profilDetails'
 import LinksContext from '../context/linksContext'
 import PrevieuwContext from '../context/previeuwContext'
-import Previeuw from '../previeuw/page'
+import Previeuw from '../components/previeuw/previeuw'
 
 
 

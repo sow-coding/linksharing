@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    /*"src/app/previeuw/page.jsx"*/  ],
+    "src/app/components/previeuw/previeuw.tsx" ],
   "exclude": [
     "node_modules"
   ]
