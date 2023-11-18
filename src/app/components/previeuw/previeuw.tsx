@@ -1,11 +1,11 @@
 "use client"
 import React, { useContext } from 'react'
 import PrevieuwContext from '../../context/previeuwContext'
+import Image from 'next/image'
 
-function Previeuw({setPart}) {
+function Previeuw({setPart, selectedFile}) {
   const previeuwInfos = useContext(PrevieuwContext)
   const MAX_DIVS = 5; 
-
   return (
     <div className='previeuw'>
       <div className="previeuwNav">
@@ -19,6 +19,9 @@ function Previeuw({setPart}) {
         </div>
       </div>
       <div className="previeuwPhone">
+        <div className="popContainerPrevieuw">
+          {selectedFile && <Image alt='profil picture' width={104} height={104} src={selectedFile} style={{borderRadius: "96px"}}/>}
+        </div>
         <h1>{previeuwInfos.userFirstName} {previeuwInfos.userLastName}</h1>
         <p>{previeuwInfos.userEmail}</p>
         <div className="linksInThePrevieuwPhone">
@@ -85,9 +88,11 @@ function Previeuw({setPart}) {
                   }
                   <p>{previeuwInfos.linksInTheApp[index]}</p>
                   </div>
-                  <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  {previeuwInfos.linksInTheApp[index] !== "Frontend Mentor" ? <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2.66666 7.3333V8.66664H10.6667L6.99999 12.3333L7.94666 13.28L13.2267 7.99997L7.94666 2.71997L6.99999 3.66664L10.6667 7.3333H2.66666Z" fill="white"/>
-                  </svg>
+                  </svg> : <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2.66699 7.33355V8.66688H10.667L7.00033 12.3335L7.94699 13.2802L13.227 8.00022L7.94699 2.72021L7.00033 3.66688L10.667 7.33355H2.66699Z" fill="#737373"/>
+                  </svg>}
                 </div>
               //</div>
             ))}        

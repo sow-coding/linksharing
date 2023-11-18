@@ -9,13 +9,13 @@ import PrevieuwContext from '../context/previeuwContext'
 import Previeuw from '../components/previeuw/previeuw'
 
 
-
 function HomePage() {
   const [part, setPart] = useState("customLinks")
   const [linksInTheApp, setLinksInTheApp] = useState(["GitHub"])
   const [userEmail, setUserEmail] = useState()
   const [userFirstName, setUserFirstName] = useState()
   const [userLastName, setUserLastName] = useState()
+  const [selectedFile, setSelectedFile] = useState(null)
   const previeuw = {
     userEmail: userEmail,
     userFirstName: userFirstName,
@@ -27,15 +27,15 @@ function HomePage() {
     <LinksContext.Provider value={linksInTheApp}>
     <PrevieuwContext.Provider value={previeuw}>
     <div className='homePage'>
-      {part !== "Previeuw" && <Navbar setPart={setPart}/>}
+      {part !== "Previeuw" && <Navbar setPart={setPart} part={part}/>}
       <div className="linksApp">
         {
         part === "customLinks" ? (
           <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp} />
         ) : part === "Previeuw" ? (
-          <Previeuw setPart={setPart} />
+          <Previeuw setPart={setPart} selectedFile={selectedFile}/>
         ) : (
-          <ProfilDetails setUserEmail={setUserEmail} setUserFirstName={setUserFirstName} setUserLastName={setUserLastName} setPart={setPart}/>
+          <ProfilDetails setSelectedFile={setSelectedFile} selectedFile={selectedFile} setUserEmail={setUserEmail} setUserFirstName={setUserFirstName} setUserLastName={setUserLastName} setPart={setPart}/>
         )
         }      
       </div>

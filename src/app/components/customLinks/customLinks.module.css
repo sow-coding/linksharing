@@ -447,9 +447,12 @@ input:active {
 .linksContainerDiv .underLinksContainerDiv .popContainer {
   width: 96px;
   height: 96px;
-  border-radius: 50px;
   background-color: #EEE;
   margin-top: 50px;
+  border-radius: 96px;
+}
+.linksContainerDiv .underLinksContainerDiv .popContainerFiled {
+  border: 4px solid #633CFF;
 }
 .linksContainerDiv .underLinksContainerDiv .textContainer {
   width: 160px;
