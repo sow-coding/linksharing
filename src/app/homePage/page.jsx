@@ -33,7 +33,7 @@ function HomePage() {
         part === "customLinks" ? (
           <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp} />
         ) : part === "Previeuw" ? (
-          <Previeuw setPart={setPart}/>
+          <Previeuw setPart={setPart} />
         ) : (
           <ProfilDetails setUserEmail={setUserEmail} setUserFirstName={setUserFirstName} setUserLastName={setUserLastName} setPart={setPart}/>
         )

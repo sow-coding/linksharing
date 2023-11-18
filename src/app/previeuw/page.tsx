@@ -3,8 +3,11 @@ import { useRouter } from 'next/navigation'
 import React, { useContext } from 'react'
 import PrevieuwContext from '../context/previeuwContext'
 
-function Previeuw({setPart}) {
-  const router = useRouter()
+interface PrevieuwProps {
+  setPart: (part: string) => void;
+}
+
+function Previeuw({setPart}:PrevieuwProps) {
   const previeuwInfos = useContext(PrevieuwContext)
   const MAX_DIVS = 5; 
 
