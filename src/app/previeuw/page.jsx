@@ -1,13 +1,8 @@
 "use client"
-import { useRouter } from 'next/navigation'
 import React, { useContext } from 'react'
 import PrevieuwContext from '../context/previeuwContext'
 
-interface PrevieuwProps {
-  setPart: (part: string) => void;
-}
-
-function Previeuw({setPart}:PrevieuwProps) {
+function Previeuw({setPart}) {
   const previeuwInfos = useContext(PrevieuwContext)
   const MAX_DIVS = 5; 
 
