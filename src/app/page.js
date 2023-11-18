@@ -61,7 +61,7 @@ export default function Home() {
           console.log("auth failed")
         }
         if(!response?.error) {
-          router.push("/homePage")
+          router.push("/linksharing")
           router.refresh()
         }
       }}>Login</div>
