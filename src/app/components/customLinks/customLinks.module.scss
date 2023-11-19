@@ -28,7 +28,7 @@ input {
         font-style: normal;
         font-weight: 400;
         line-height: 150%; /* 24px */   
-        margin: 25px 0;     
+        margin: 25px 0;
     }
     & .addNewLinkButton {
             border-radius: 8px;
@@ -407,6 +407,116 @@ input {
 
 .none {
     display: none;
+}
+
+//Notification class
+
+.cannotPass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background-color: #333;
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
+    //top: 90%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    & p {
+        color: #FAFAFA;
+        margin: 0 0;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; 
+    }
+}
+
+.cannotPassActive {
+    opacity: 1;
+    translate: (-50%, -90%);
+}
+
+.cannotPassDisable {
+    opacity: 0;
+    translate: (-50%, 0);
+}
+
+.cannotAdd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background-color: #333;
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
+    //top: 90%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    & p {
+        color: #FAFAFA;
+        margin: 0 0;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; 
+    }
+}
+
+.cannotAddActive {
+    opacity: 1;
+    translate: (-50%, -90%);
+}
+
+.cannotAddDisable {
+    opacity: 0;
+    translate: (-50%, 0);
+}
+
+.cannotPrevieuw {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background-color: #333;
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
+    //top: 90%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    & p {
+        color: #FAFAFA;
+        margin: 0 0;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; 
+    }
+}
+
+.cannotPrevieuwActive {
+    opacity: 1;
+    translate: (-50%, -90%);
+}
+
+.cannotPrevieuwDisable {
+    opacity: 0;
+    translate: (-50%, 0);
 }
 
 @media (max-width: 1000px) {

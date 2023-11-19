@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [login, setLogin] = useState(true)
+  const [authFailed, setAuthFailed] = useState(false)
   const router = useRouter()
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -40,14 +41,14 @@ export default function Home() {
     </div>
     <div className="inputsLoginForm">
       <div className="firstInputLoginForm">
-        <label htmlFor="emailAddress">Email address</label>
-        <input type="text" placeholder='e.g. alex@email.com' value={formData.email} onChange={(e) => {
+        <label htmlFor="emailAddress" className={`${authFailed === true && "labelAuthFailed"}`}>Email address</label>
+        <input type="text" className={`${authFailed === true && "inputAuthFailed"}`} placeholder='e.g. alex@email.com' value={formData.email} onChange={(e) => {
           setFormData({ ...formData, email: e.target.value })
   }}/>
       </div>
       <div className="secondInputLoginForm">
-        <label htmlFor="Password">Password</label>
-        <input type="password" placeholder='Enter your password' value={formData.password} onChange={(e) => {
+        <label htmlFor="Password" className={`${authFailed === true && "labelAuthFailed"}`}>Password</label>
+        <input type="password" className={`${authFailed === true && "inputAuthFailed"}`} placeholder='Enter your password' value={formData.password} onChange={(e) => {
           setFormData({ ...formData, password: e.target.value })
         }}/>
       </div>
@@ -58,7 +59,7 @@ export default function Home() {
           redirect: false,
         })
         if (response?.error) {
-          console.log("auth failed")
+          setAuthFailed(true)
         }
         if(!response?.error) {
           router.push("/linksharing")

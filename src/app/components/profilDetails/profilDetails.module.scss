@@ -110,6 +110,14 @@
     }
 }    
 
+.inputError {
+    border: 1px solid #EE3939!important;
+}
+
+.labelError {
+    color: #EE3939!important;
+}
+
 @media (max-width: 1000px) {
     .profilDetails {
         width: 65%;

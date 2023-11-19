@@ -16,6 +16,8 @@ function HomePage() {
   const [userFirstName, setUserFirstName] = useState()
   const [userLastName, setUserLastName] = useState()
   const [selectedFile, setSelectedFile] = useState(null)
+  const [cannotPrevieuw, setCannotPrevieuw] = useState(false)
+
   const previeuw = {
     userEmail: userEmail,
     userFirstName: userFirstName,
@@ -27,11 +29,11 @@ function HomePage() {
     <LinksContext.Provider value={linksInTheApp}>
     <PrevieuwContext.Provider value={previeuw}>
     <div className='homePage'>
-      {part !== "Previeuw" && <Navbar setPart={setPart} part={part}/>}
+      {part !== "Previeuw" && <Navbar setPart={setPart} part={part} setCannotPrevieuw={setCannotPrevieuw}/>}
       <div className="linksApp">
         {
         part === "customLinks" ? (
-          <CustomLinks setPart={setPart} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp} />
+          <CustomLinks setPart={setPart} cannotPrevieuw={cannotPrevieuw} setLinksInTheApp={setLinksInTheApp} linksInTheApp={linksInTheApp} />
         ) : part === "Previeuw" ? (
           <Previeuw setPart={setPart} selectedFile={selectedFile}/>
         ) : (

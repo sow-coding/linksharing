@@ -14,7 +14,7 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName, setPart
   const handleFileInputClick = () => {
     fileInputRef.current.click();
   };
-
+  const [profilDetailsFailed, setProfilDetailsFailed] = useState<boolean>(false)
   function LinksContainer() {
     const MAX_DIVS = 5; 
   
@@ -145,14 +145,14 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName, setPart
       <div className="profilDetailsBottom">
         <div className="profilDetailsInputs">
           <div className='firstInput'>
-          <label htmlFor="firstName">First Name*</label>
-          <input type="text" name='firstName' placeholder='e.g. John' onChange={(e) => {
+          <label htmlFor="firstName" className={`${profilDetailsFailed && "labelError"}`}>First Name*</label>
+          <input type="text" name='firstName' className={`${profilDetailsFailed && "inputError"}`} placeholder='e.g. John' onChange={(e) => {
             setUserFirstName(e.target.value)
           }}/>
           </div>
           <div className='secondInput'>
-          <label htmlFor="lastName">Last Name*</label>
-          <input type="text" name='lastName' placeholder='e.g. Appleseed' onChange={(e) => {
+          <label htmlFor="lastName" className={`${profilDetailsFailed && "labelError"}`}>Last Name*</label>
+          <input type="text" name='lastName' className={`${profilDetailsFailed && "inputError"}`} placeholder='e.g. Appleseed' onChange={(e) => {
             setUserLastName(e.target.value)
           }}/>
           </div>
@@ -166,7 +166,10 @@ function ProfilDetails({setUserEmail, setUserFirstName, setUserLastName, setPart
       </div>
       <div className="linksButton">
           <div onClick={() => {
-          setPart("Previeuw")
+          previeuwInfos.userEmail || previeuwInfos.userFirstName || previeuwInfos.userLastName === undefined &&
+          setProfilDetailsFailed(true)
+         previeuwInfos.userFirstName !== undefined && previeuwInfos.userLastName !== undefined &&
+            setPart("Previeuw")
           }}>Save</div>
         </div>
     </form>

@@ -173,10 +173,11 @@ function Link(props: LinkProps) {
   )
 }
 
-function CustomLinks({setPart, setLinksInTheApp, linksInTheApp}) {
+function CustomLinks({setPart, setLinksInTheApp, linksInTheApp, cannotPrevieuw}) {
   const [links, setLinks] = useState([])
   const [linksInThePhone, setLinksInThePhone] = useState([])
-
+  const [cannotPass, setCannotPass] = useState<boolean>(false)
+  const [cannotAdd, setCannotAdd] = useState<boolean>(false)
   const deleteLink = (index) => {
     setLinks((prevLinks) => {
       const updatedLinks = [...prevLinks];
@@ -291,9 +292,18 @@ function CustomLinks({setPart, setLinksInTheApp, linksInTheApp}) {
           const newLink = {
             platform: "",
             link: ""
-          };         
-          setLinks((prevLinks) => [...prevLinks, newLink]);
-          setLinksInThePhone([...linksInThePhone, "GitHub"])
+          }; 
+          function addLink () {
+            setLinks((prevLinks) => [...prevLinks, newLink]);
+            setLinksInThePhone([...linksInThePhone, "GitHub"])
+          }
+          function linkLimit () {
+            setCannotAdd(true)
+            setTimeout(() => {
+              setCannotAdd(false)
+            }, 1000)
+          }        
+          linksInThePhone.length <= 4 ? addLink() : linkLimit()
         }}>
             <p>+ Add new link</p>
         </div>
@@ -346,11 +356,33 @@ function CustomLinks({setPart, setLinksInTheApp, linksInTheApp}) {
           links.map((link, index) => <Link key={index} index={index} deleteLink={() => {deleteLink(index)}} linksInThePhone={linksInThePhone} setLinksInThePhone={setLinksInThePhone} linksInTheApp={linksInTheApp} setLinksInTheApp={setLinksInTheApp}/> )}
             
         </div>
-        <div className="linksButton" onClick={() => {
-          setPart("profilDetails")
-        }}>
-            <div>Save</div>
+        <div className="linksButton">
+            <div onClick={() => {
+              linksInThePhone.length === 0 && setCannotPass(true)
+              setTimeout(() => {
+                setCannotPass(false)
+              }, 1000)
+              linksInThePhone.length !== 0 && setPart("profilDetails")
+            }}>Save</div>
         </div>
+      </div>
+
+      <div className={`cannotPass ${
+        cannotPass === true ? "cannotPassActive":"cannotPassDisable"
+      }`}>
+        <p>You have to create at least 1 link</p>
+      </div>
+
+      <div className={`cannotAdd ${
+        cannotAdd === true ? "cannotAddActive":"cannotAddDisable"
+      }`}>
+        <p>You cannot create more than 5 links</p>
+      </div>
+
+      <div className={`cannotPrevieuw ${
+        cannotPrevieuw === true ? "cannotPrevieuwActive":"cannotPrevieuwDisable"
+      }`}>
+        <p>You cannot go to the previeuw right now</p>
       </div>
   </>
 
