@@ -232,4 +232,9 @@ body .createAccountForm .createAccountInputs .createAccountButton:hover {
   .createAccountInputs .createAccountButton {
     width: 300px !important;
   }
+}
+@media (max-width: 425px) {
+  body {
+    justify-content: start !important;
+  }
 }/*# sourceMappingURL=global.css.map */

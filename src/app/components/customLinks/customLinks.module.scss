@@ -418,14 +418,13 @@ input {
     justify-content: center;
     padding: 16px 24px;
     background-color: #333;
-    position: absolute;
+    position: fixed;
     border-radius: 12px;
     box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
-    //top: 90%;
-    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
     opacity: 0;
+    transform: translate(-50%, -50%); 
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     & p {
         color: #FAFAFA;
@@ -439,12 +438,10 @@ input {
 
 .cannotPassActive {
     opacity: 1;
-    translate: (-50%, -90%);
 }
 
 .cannotPassDisable {
     opacity: 0;
-    translate: (-50%, 0);
 }
 
 .cannotAdd {
@@ -454,14 +451,13 @@ input {
     justify-content: center;
     padding: 16px 24px;
     background-color: #333;
-    position: absolute;
+    position: fixed;
     border-radius: 12px;
     box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
-    //top: 90%;
-    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
     opacity: 0;
+    transform: translate(-50%, -50%);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     & p {
         color: #FAFAFA;
@@ -475,12 +471,10 @@ input {
 
 .cannotAddActive {
     opacity: 1;
-    translate: (-50%, -90%);
 }
 
 .cannotAddDisable {
     opacity: 0;
-    translate: (-50%, 0);
 }
 
 .cannotPrevieuw {
@@ -490,14 +484,13 @@ input {
     justify-content: center;
     padding: 16px 24px;
     background-color: #333;
-    position: absolute;
+    position: fixed;
     border-radius: 12px;
     box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
-    //top: 90%;
-    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
     opacity: 0;
+    transform: translate(-50%, -50%);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     & p {
         color: #FAFAFA;
@@ -511,12 +504,10 @@ input {
 
 .cannotPrevieuwActive {
     opacity: 1;
-    translate: (-50%, -90%);
 }
 
 .cannotPrevieuwDisable {
     opacity: 0;
-    translate: (-50%, 0);
 }
 
 @media (max-width: 1000px) {
