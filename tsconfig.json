@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/app/components/previeuw/previeuw.tsx" ],
+    "src/app/components/previeuw/previeuw.tsx", "__tests__/index.test.tsx" ],
   "exclude": [
     "node_modules"
   ]

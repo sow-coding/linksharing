@@ -16,14 +16,14 @@ function Link(props: LinkProps) {
   const [linkInput, setLinkInput] = useState("")
 
   return (
-    <div className='link' onClick={() => {
+    <div className='link' data-testid="link" onClick={() => {
       isOpen === true && setIsOpen(false)
     }}>
       <div className="linkTop">
         <div className="linkTopLeft">
           <p>Link #{props.index  + 1}</p>
         </div>
-        <p className={`${props.index}`} onClick={() => {
+        <p data-testid="remove" className={`${props.index}`} onClick={() => {
           props.deleteLink()
         }}>Remove</p>
       </div>
@@ -173,7 +173,15 @@ function Link(props: LinkProps) {
   )
 }
 
-function CustomLinks({setPart, setLinksInTheApp, linksInTheApp, cannotPrevieuw}) {
+type customLinks = {
+  setPart?: any,
+  setLinksTheApp?: any,
+  linksInTheApp?: any,
+  cannotPrevieuw?: any,
+  setLinksInTheApp?: any
+}
+
+function CustomLinks({setPart, setLinksInTheApp, linksInTheApp, cannotPrevieuw}:customLinks) {
   const [links, setLinks] = useState([])
   const [linksInThePhone, setLinksInThePhone] = useState([])
   const [cannotPass, setCannotPass] = useState<boolean>(false)
@@ -285,10 +293,10 @@ function CustomLinks({setPart, setLinksInTheApp, linksInTheApp, cannotPrevieuw})
   return (
   <>
       <LinksContainer />
-      <div className='customLinks'>
+      <div data-testid="customLinks" className='customLinks'>
         <h1>Custom your links</h1>
         <p>Add/edit/remove links below and then share all your profiles with the world!</p>
-        <div className="addNewLinkButton" onClick={() => {
+        <div data-testid="addNewLinkButton" className="addNewLinkButton" onClick={() => {
           const newLink = {
             platform: "",
             link: ""
