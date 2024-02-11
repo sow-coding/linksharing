@@ -1,9 +1,9 @@
 @import "../app/linksharing/homePage.module.css";
-@import "../app/components/navbar/navbar.module.css";
-@import "../app/components/customLinks/customLinks.module.css";
-@import "../app/components/linksContainer/linksContainer.module.css";
-@import "../app/components/profilDetails/profilDetails.module.css";
-@import "../app/components/previeuw/previeuw.module.css";
+@import "../app/../components/navbar/navbar.module.css";
+@import "../app/../components/customLinks/customLinks.module.css";
+@import "../app/../components/linksContainer/linksContainer.module.css";
+@import "../app/../components/profilDetails/profilDetails.module.css";
+@import "../app/../components/previeuw/previeuw.module.css";
 *:focus {
   outline: none;
 }
@@ -33,7 +33,7 @@ body .loginForm .logoOnLoginForm h2 {
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* 48px */
+  line-height: 150%;
 }
 body .loginForm .inputsLoginForm {
   display: flex;
@@ -82,7 +82,7 @@ body .loginForm .inputsLoginForm .loginButton {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%; /* 24px */
+  line-height: 150%;
 }
 body .loginForm .inputsLoginForm .loginButton:hover {
   cursor: pointer;
@@ -94,14 +94,14 @@ body .loginForm .logoFormText h1 {
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* 48px */
+  line-height: 150%;
 }
 body .loginForm .logoFormText p {
   color: #737373;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 24px */
+  line-height: 150%;
 }
 body .createAccountForm .logoOnLoginForm {
   display: flex;
@@ -115,14 +115,14 @@ body .createAccountForm .logoOnLoginForm h2 {
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* 48px */
+  line-height: 150%;
 }
 body .createAccountForm .createAccountText h1 {
   color: #333;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
-  line-height: 150%; /* 48px */
+  line-height: 150%;
   margin-bottom: 0;
 }
 body .createAccountForm .createAccountText p {
@@ -130,7 +130,7 @@ body .createAccountForm .createAccountText p {
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 24px */
+  line-height: 150%;
   margin-bottom: 20px;
 }
 body .createAccountForm .createAccountInputs {
@@ -183,7 +183,7 @@ body .createAccountForm .createAccountInputs .createAccountButton {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%; /* 24px */
+  line-height: 150%;
 }
 body .createAccountForm .createAccountInputs .createAccountButton:hover {
   cursor: pointer;

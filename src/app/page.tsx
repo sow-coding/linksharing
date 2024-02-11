@@ -1,6 +1,6 @@
 "use client"
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
@@ -20,7 +20,6 @@ export default function Home() {
       .oneOf([Yup.ref('password')], 'Passwords must match')
       .required('Required'),
   });
-
 
   const [formData, setFormData] = useState({
     email: '',
@@ -44,7 +43,7 @@ export default function Home() {
         <label htmlFor="emailAddress" className={`${authFailed === true && "labelAuthFailed"}`}>Email address</label>
         <input type="text" className={`${authFailed === true && "inputAuthFailed"}`} placeholder='e.g. alex@email.com' value={formData.email} onChange={(e) => {
           setFormData({ ...formData, email: e.target.value })
-  }}/>
+        }}/>
       </div>
       <div className="secondInputLoginForm">
         <label htmlFor="Password" className={`${authFailed === true && "labelAuthFailed"}`}>Password</label>
@@ -75,21 +74,20 @@ export default function Home() {
   </form> : 
   
   <Formik
-  initialValues={{
-    email: '',
-    password: '',
-    repassword: '',
-  }}
-  validationSchema={validationSchema}
-  onSubmit={ async (values) => {
-    const {repassword, ...allOthersValues} = values
-    // Handle form submission here
-    const reponse = await fetch ('/api/auth/register', {
-      method: "POST",
-      body: JSON.stringify(allOthersValues)
-    })
-    
-  }}              
+    initialValues={{
+      email: '',
+      password: '',
+      repassword: '',
+    }}
+    validationSchema={validationSchema}
+    onSubmit={ async (values) => {
+      const {repassword, ...allOthersValues} = values
+      const reponse = await fetch ('/api/auth/register', {
+        method: "POST",
+        body: JSON.stringify(allOthersValues)
+      })
+      
+    }}              
   >
     <Form data-testid="createAccountForm" className='createAccountForm'>
       <div className="logoOnLoginForm">

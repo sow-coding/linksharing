@@ -1,77 +1,65 @@
 "use client"
-import React, { useContext, useState } from 'react'
-import PrevieuwContext from '../../context/previeuwContext'
-import Image from 'next/image'
+import Image from "next/image";
+import { useImageContext } from "../../context/imageContext";
+import { useLinksContext } from "../../context/linksContext";
+import { useUserContext } from "../../context/userContext";
 
-function Previeuw({setPart, selectedFile}) {
-  const [shareLink, setShareLink] = useState<boolean>(false)
-  const previeuwInfos = useContext(PrevieuwContext)
-  const MAX_DIVS = 5;
-  function copyLink () {
-    setShareLink(true)
-    setTimeout(() => {
-      setShareLink(false)
-    }, 1000)
-    navigator.clipboard.writeText("Thank you for visiting my application ( the links are not there, I preferred to put a thank you message, I hope you will not be disappointed lol )")
-  } 
-  return (
-    <div className='previeuw'>
-      <div className="previeuwNav">
-        <div className="previeuwButtons">
-          <div className="leftButton" onClick={() => {
-            setPart("ProfilDetails")
-          }}>
-            <p>Back to Editor</p>
+function LinksContainer2() {
+    const {image} = useImageContext()
+    const {links} = useLinksContext()
+    const {user} = useUserContext()
+    const MAX_DIVS = 5; 
+    return (
+      <div className='linksContainerDiv'>
+        <div className="underLinksContainerDiv">
+          <div className={`popContainer ${image && "popContainerFiled"}`}>
+            {image && <Image src={image.src} width={96} height={96} alt='picture profile' style={{ borderRadius: '96px' }}/>}
           </div>
-          <div className="rightButton" onClick={copyLink}>Share Link</div>
-        </div>
-      </div>
-      <div className="previeuwPhone">
-        <div className="popContainerPrevieuw">
-          {selectedFile && <Image alt='profil picture' width={104} height={104} src={selectedFile} style={{borderRadius: "96px"}}/>}
-        </div>
-        <h1>{previeuwInfos.userFirstName} {previeuwInfos.userLastName}</h1>
-        <p>{previeuwInfos.userEmail}</p>
-        <div className="linksInThePrevieuwPhone">
-        {
-        previeuwInfos.linksInTheApp.slice(0, MAX_DIVS).map((link, index) => (
-              //<div key={index} className='linkInTheContainer'>
-                <div key={index} className={
-                  previeuwInfos.linksInTheApp[index] === "GitHub"
+          <div className={`${user.firstName !== "" || user.lastName !== "" ? "noTextContainer" : "textContainer"}`}>
+            <p>{user.firstName} {user.lastName}</p>
+          </div>
+          <div className={`${user.email !== "" ? "noLittleTextContainer" : "littleTextContainer"}`}>
+            <p>{user.email}</p>
+          </div>
+          <div className="linksInTheContainer">
+            {links.slice(0, MAX_DIVS).map((link, index) => (
+              <div key={index} className='linkInTheContainer'>
+                <div className={
+                  links[index].platform === "GitHub"
                   ? "githubInThePhone"
-                  : previeuwInfos.linksInTheApp[index] === "YouTube"
+                  : links[index].platform === "YouTube"
                   ? "youtubeInThePhone"
-                  : previeuwInfos.linksInTheApp[index] === "Facebook"
+                  : links[index].platform === "Facebook"
                   ? "facebookInThePhone"
-                  : previeuwInfos.linksInTheApp[index] === "Linkedin"
+                  : links[index].platform === "Linkedin"
                   ? "linkedinInThePhone"
-                  : previeuwInfos.linksInTheApp[index] === "Frontend Mentor"
+                  : links[index].platform === "FrontendMentor"
                   ? "frontendmentorInThePhone"
                   : "none"
                 }>
                   <div className={
-                  previeuwInfos.linksInTheApp[index] === "GitHub"
+                  links[index].platform === "GitHub"
                   ? "githubInThePhoneLeft"
-                  : previeuwInfos.linksInTheApp[index] === "YouTube"
+                  : links[index].platform === "YouTube"
                   ? "youtubeInThePhoneLeft"
-                  : previeuwInfos.linksInTheApp[index] === "Facebook"
+                  : links[index].platform === "Facebook"
                   ? "facebookInThePhoneLeft"
-                  : previeuwInfos.linksInTheApp[index] === "Linkedin"
+                  : links[index].platform === "Linkedin"
                   ? "linkedinInThePhoneLeft"
-                  : previeuwInfos.linksInTheApp[index] === "Frontend Mentor"
+                  : links[index].platform === "FrontendMentor"
                   ? "frontendmentorInThePhoneLeft"
                   : "none"                   
                   }>
                   {
-                  previeuwInfos.linksInTheApp[index] === "GitHub"
+                  links[index].platform === "GitHub"
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="13" height="15" viewBox="0 0 13 15" fill="none">
                   <path d="M8.98187 1.28805C7.67799 0.985074 6.32201 0.985074 5.01813 1.28805C4.26507 0.826185 3.69013 0.613919 3.272 0.524319C3.09354 0.484042 2.91093 0.465065 2.728 0.467785C2.64476 0.470041 2.56192 0.48004 2.48053 0.497652L2.46987 0.499785L2.4656 0.501919H2.4624L2.60853 1.01499L2.4624 0.502985C2.38746 0.524162 2.31807 0.561492 2.2591 0.612353C2.20013 0.663213 2.15302 0.72637 2.12107 0.797385C1.80637 1.50214 1.74642 2.29436 1.95147 3.03845C1.42041 3.68203 1.13101 4.49099 1.13333 5.32539C1.13333 6.98192 1.62187 8.09552 2.45493 8.81125C3.0384 9.31259 3.74667 9.57925 4.45707 9.73179C4.34527 10.0601 4.30313 10.4081 4.33333 10.7537V11.3915C3.8992 11.4822 3.5984 11.4534 3.384 11.383C3.11627 11.2945 2.9104 11.1163 2.71307 10.8603C2.60991 10.7223 2.51379 10.5792 2.42507 10.4315L2.36427 10.3323C2.28749 10.2047 2.20783 10.0788 2.12533 9.95472C1.92267 9.65499 1.62187 9.27952 1.13547 9.15152L0.6192 9.01605L0.348267 10.0486L0.864533 10.1841C0.949867 10.2054 1.0608 10.2854 1.2432 10.5531C1.31341 10.6588 1.38098 10.7662 1.44587 10.8753L1.5184 10.9926C1.61867 11.1547 1.73387 11.3339 1.8672 11.5089C2.13707 11.8609 2.50507 12.2161 3.0512 12.3963C3.42453 12.5201 3.84907 12.5499 4.33333 12.4753V14.4667C4.33333 14.6082 4.38952 14.7438 4.48954 14.8438C4.58956 14.9439 4.72522 15.0001 4.86667 15.0001H9.13333C9.27478 15.0001 9.41044 14.9439 9.51046 14.8438C9.61048 14.7438 9.66667 14.6082 9.66667 14.4667V10.6662C9.66667 10.3302 9.65173 10.0219 9.5568 9.73499C10.264 9.58565 10.9669 9.31899 11.5472 8.81765C12.3792 8.09659 12.8667 6.97232 12.8667 5.30619V5.30512C12.864 4.47756 12.5745 3.67652 12.0475 3.03845C12.2523 2.2947 12.1923 1.50289 11.8779 0.798452C11.8462 0.727352 11.7993 0.664058 11.7405 0.613014C11.6817 0.561971 11.6124 0.524415 11.5376 0.502985L11.3915 1.01499C11.5376 0.502985 11.5365 0.502985 11.5355 0.502985L11.5333 0.501919L11.5291 0.499785L11.5195 0.497652C11.4931 0.490802 11.4664 0.48546 11.4395 0.481652C11.3836 0.473499 11.3273 0.468868 11.2709 0.467785C11.088 0.465085 10.9054 0.484061 10.7269 0.524319C10.3099 0.613919 9.73493 0.826185 8.98187 1.28805Z" fill="white"/>
                 </svg>
-                  : previeuwInfos.linksInTheApp[index] === "YouTube"
+                  : links[index].platform === "YouTube"
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M8.16265 2.66675C8.51865 2.66875 9.40931 2.67741 10.356 2.71541L10.692 2.73008C11.6446 2.77475 12.5966 2.85208 13.0693 2.98341C13.6993 3.16075 14.194 3.67675 14.3613 4.33141C14.628 5.37141 14.6613 7.39942 14.6653 7.89075L14.666 7.99208V8.10808C14.6613 8.59941 14.628 10.6281 14.3613 11.6674C14.192 12.3241 13.6966 12.8407 13.0693 13.0154C12.5966 13.1467 11.6446 13.2241 10.692 13.2687L10.356 13.2841C9.40931 13.3214 8.51865 13.3307 8.16265 13.3321L8.00598 13.3327H7.83598C7.08265 13.3281 3.93198 13.2941 2.92931 13.0154C2.29998 12.8381 1.80465 12.3221 1.63731 11.6674C1.37065 10.6274 1.33731 8.59941 1.33331 8.10808V7.89075C1.33731 7.39942 1.37065 5.37075 1.63731 4.33141C1.80665 3.67475 2.30198 3.15808 2.92998 2.98408C3.93198 2.70475 7.08331 2.67075 7.83665 2.66675H8.16265ZM6.66598 5.66675V10.3334L10.666 8.00008L6.66598 5.66675Z" fill="white"/>
                 </svg>
-                  : previeuwInfos.linksInTheApp[index] === "Facebook"
+                  : links[index].platform === "Facebook"
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <g clip-path="url(#clip0_86_26460)">
                     <path d="M19.9996 10.061C19.9996 4.50354 15.5221 -0.00146484 9.99957 -0.00146484C4.47457 -0.000214844 -0.00292969 4.50354 -0.00292969 10.0623C-0.00292969 15.0835 3.65457 19.246 8.43457 20.001V12.9698H5.89707V10.0623H8.43707V7.84354C8.43707 5.32229 9.93082 3.92979 12.2146 3.92979C13.3096 3.92979 14.4533 4.12604 14.4533 4.12604V6.60104H13.1921C11.9508 6.60104 11.5633 7.37729 11.5633 8.17354V10.061H14.3358L13.8933 12.9685H11.5621V19.9998C16.3421 19.2448 19.9996 15.0823 19.9996 10.061Z" fill="white"/>
@@ -82,11 +70,11 @@ function Previeuw({setPart, selectedFile}) {
                     </clipPath>
                   </defs>
                 </svg>
-                  : previeuwInfos.linksInTheApp[index] === "Linkedin"
+                  : links[index].platform === "Linkedin"
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M12.6667 2C13.0203 2 13.3594 2.14048 13.6095 2.39052C13.8595 2.64057 14 2.97971 14 3.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H12.6667ZM12.3333 12.3333V8.8C12.3333 8.2236 12.1044 7.6708 11.6968 7.26322C11.2892 6.85564 10.7364 6.62667 10.16 6.62667C9.59333 6.62667 8.93333 6.97333 8.61333 7.49333V6.75333H6.75333V12.3333H8.61333V9.04667C8.61333 8.53333 9.02667 8.11333 9.54 8.11333C9.78754 8.11333 10.0249 8.21167 10.2 8.3867C10.375 8.56173 10.4733 8.79913 10.4733 9.04667V12.3333H12.3333ZM4.58667 5.70667C4.88371 5.70667 5.16859 5.58867 5.37863 5.37863C5.58867 5.16859 5.70667 4.88371 5.70667 4.58667C5.70667 3.96667 5.20667 3.46 4.58667 3.46C4.28786 3.46 4.00128 3.5787 3.78999 3.78999C3.5787 4.00128 3.46 4.28786 3.46 4.58667C3.46 5.20667 3.96667 5.70667 4.58667 5.70667ZM5.51333 12.3333V6.75333H3.66667V12.3333H5.51333Z" fill="white"/>
                 </svg>
-                  : previeuwInfos.linksInTheApp[index] === "Frontend Mentor"
+                  : links[index].platform === "FrontendMentor"
                   ? <svg xmlns="http://www.w3.org/2000/svg" width="23" height="20" viewBox="0 0 23 20" fill="none">
                   <path d="M21.6905 10.4854C21.5943 10.4854 21.4992 10.4653 21.4112 10.4262L15.5545 7.80353C15.4344 7.74955 15.3325 7.66202 15.2609 7.55146C15.1894 7.44091 15.1514 7.31204 15.1514 7.18037C15.1514 7.0487 15.1894 6.91983 15.2609 6.80928C15.3325 6.69872 15.4344 6.61119 15.5545 6.55722L21.4112 3.9436C21.5766 3.87021 21.7642 3.86529 21.9332 3.9299C22.1021 3.99451 22.2386 4.12341 22.3128 4.28839C22.3861 4.45382 22.3909 4.64158 22.3261 4.81054C22.2613 4.97951 22.1322 5.11592 21.9671 5.18991L17.5049 7.18128L21.968 9.17992C22.1107 9.24355 22.2273 9.35424 22.2982 9.49348C22.3691 9.63272 22.39 9.79208 22.3575 9.94493C22.325 10.0978 22.2411 10.2348 22.1197 10.3332C21.9983 10.4316 21.8468 10.4853 21.6905 10.4854Z" fill="#67BECE"/>
                   <path d="M13.7087 20C7.26973 20 1.64041 15.6534 0.0220298 9.42916C-0.0235705 9.25412 0.00223218 9.06813 0.0937616 8.91211C0.185291 8.75609 0.33505 8.64283 0.510092 8.59723C0.685134 8.55162 0.871122 8.57743 1.02714 8.66896C1.18316 8.76049 1.29643 8.91024 1.34203 9.08529C2.05596 11.8212 3.65733 14.243 5.89524 15.9712C8.13315 17.6995 10.8811 18.6365 13.7087 18.6355C13.8896 18.6355 14.0632 18.7074 14.1911 18.8353C14.3191 18.9633 14.391 19.1368 14.391 19.3178C14.391 19.4987 14.3191 19.6723 14.1911 19.8002C14.0632 19.9282 13.8896 20 13.7087 20Z" fill="#3F54A3"/>
@@ -94,29 +82,25 @@ function Previeuw({setPart, selectedFile}) {
                 </svg>
                   : "none" 
                   }
-                  <p>{previeuwInfos.linksInTheApp[index]}</p>
+                  <p>{links[index].platform}</p>
                   </div>
-                  {previeuwInfos.linksInTheApp[index] !== "Frontend Mentor" ? <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  {links[index].platform !== "FrontendMentor" ? <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M2.66666 7.3333V8.66664H10.6667L6.99999 12.3333L7.94666 13.28L13.2267 7.99997L7.94666 2.71997L6.99999 3.66664L10.6667 7.3333H2.66666Z" fill="white"/>
                   </svg> : <svg className='arrow' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M2.66699 7.33355V8.66688H10.667L7.00033 12.3335L7.94699 13.2802L13.227 8.00022L7.94699 2.72021L7.00033 3.66688L10.667 7.33355H2.66699Z" fill="#737373"/>
                   </svg>}
                 </div>
-              //</div>
-            ))}        
+              </div>
+            ))}
+            {links.length < MAX_DIVS && (
+              Array.from({ length: MAX_DIVS - links.length }).map((_, index) => (
+                <div key={links.length + index} className='linkInTheContainer'></div>
+              ))
+            )}
           </div>
+        </div>
       </div>
-
-      <div className={`shareLink ${
-        shareLink === true ? "shareLinkActive":"shareLinkDisable"
-      }`}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-          <path d="M11.154 14.6509C11.2414 14.738 11.3107 14.8415 11.3581 14.9554C11.4054 15.0694 11.4297 15.1916 11.4297 15.3149C11.4297 15.4383 11.4054 15.5605 11.3581 15.6745C11.3107 15.7884 11.2414 15.8919 11.154 15.979L10.6899 16.4431C9.81057 17.3224 8.61791 17.8164 7.3743 17.8164C6.1307 17.8164 4.93804 17.3224 4.05868 16.4431C3.17932 15.5637 2.6853 14.371 2.6853 13.1274C2.6853 11.8838 3.17932 10.6912 4.05868 9.81181L5.94305 7.92822C6.78796 7.08122 7.92476 6.58933 9.12057 6.55331C10.3164 6.51729 11.4807 6.93986 12.3751 7.73447C12.4674 7.81655 12.5427 7.91601 12.5966 8.02717C12.6505 8.13833 12.682 8.25902 12.6892 8.38235C12.6965 8.50568 12.6794 8.62923 12.6389 8.74595C12.5984 8.86266 12.5353 8.97026 12.4532 9.06259C12.3711 9.15493 12.2717 9.2302 12.1605 9.28409C12.0493 9.33799 11.9287 9.36947 11.8053 9.37672C11.682 9.38398 11.5585 9.36687 11.4417 9.32638C11.325 9.28588 11.2174 9.2228 11.1251 9.14072C10.5888 8.66441 9.89074 8.41102 9.17377 8.43237C8.4568 8.45371 7.77508 8.74819 7.26805 9.25556L5.38524 11.1368C4.85771 11.6643 4.56135 12.3798 4.56135 13.1259C4.56135 13.8719 4.85771 14.5874 5.38524 15.1149C5.91277 15.6425 6.62826 15.9388 7.3743 15.9388C8.12035 15.9388 8.83583 15.6425 9.36337 15.1149L9.82743 14.6509C9.9145 14.5637 10.0179 14.4946 10.1317 14.4474C10.2455 14.4002 10.3675 14.3759 10.4907 14.3759C10.6139 14.3759 10.7359 14.4002 10.8497 14.4474C10.9635 14.4946 11.0669 14.5637 11.154 14.6509ZM16.9415 3.55713C16.0614 2.67912 14.869 2.18604 13.6259 2.18604C12.3827 2.18604 11.1903 2.67912 10.3102 3.55713L9.84618 4.02119C9.67006 4.19731 9.57112 4.43618 9.57112 4.68525C9.57112 4.93432 9.67006 5.17319 9.84618 5.34931C10.0223 5.52543 10.2612 5.62438 10.5102 5.62438C10.7593 5.62438 10.9982 5.52543 11.1743 5.34931L11.6384 4.88525C12.1659 4.35772 12.8814 4.06135 13.6274 4.06135C14.3735 4.06135 15.089 4.35772 15.6165 4.88525C16.144 5.41278 16.4404 6.12827 16.4404 6.87431C16.4404 7.62036 16.144 8.33584 15.6165 8.86338L13.7329 10.7478C13.2254 11.2549 12.5433 11.549 11.8262 11.5697C11.109 11.5905 10.4111 11.3364 9.87509 10.8595C9.78275 10.7774 9.67515 10.7143 9.55844 10.6738C9.44172 10.6333 9.31817 10.6162 9.19484 10.6235C9.07152 10.6307 8.95082 10.6622 8.83966 10.7161C8.7285 10.77 8.62904 10.8453 8.54696 10.9376C8.46488 11.0299 8.4018 11.1375 8.36131 11.2542C8.32081 11.371 8.30371 11.4945 8.31096 11.6178C8.31821 11.7412 8.34969 11.8619 8.40359 11.973C8.45748 12.0842 8.53275 12.1836 8.62509 12.2657C9.51882 13.0601 10.6824 13.483 11.8776 13.4477C13.0729 13.4124 14.2095 12.9217 15.0548 12.0759L16.9391 10.1923C17.8182 9.31242 18.3121 8.1197 18.3126 6.87597C18.313 5.63224 17.8199 4.43917 16.9415 3.55869V3.55713Z" fill="#737373"/>
-        </svg>
-        <p>The link has been copied to your clipboard!</p>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default Previeuw
+export default LinksContainer2
