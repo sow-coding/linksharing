@@ -64,6 +64,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
     }
 }
 
@@ -264,6 +265,7 @@
     .previeuw {
         & .previeuwNav {
             background-color: white;
+            height: auto!important;
         }
     }
 }

@@ -7,6 +7,9 @@
 *:focus {
   outline: none;
 }
+*:focus input {
+  -webkit-text-size-adjust: none;
+}
 
 body {
   display: flex;

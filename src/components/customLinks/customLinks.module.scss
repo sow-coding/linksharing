@@ -426,6 +426,7 @@ input {
     opacity: 0;
     transform: translate(-50%, -50%); 
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    pointer-events: all;
     & p {
         color: #FAFAFA;
         margin: 0 0;
@@ -442,6 +443,7 @@ input {
 
 .cannotPassDisable {
     opacity: 0;
+    display: none;
 }
 
 .cannotAdd {
@@ -459,6 +461,7 @@ input {
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    pointer-events: all;
     & p {
         color: #FAFAFA;
         margin: 0 0;
@@ -475,6 +478,7 @@ input {
 
 .cannotAddDisable {
     opacity: 0;
+    display: none;
 }
 
 .cannotPrevieuw {
@@ -492,6 +496,7 @@ input {
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    pointer-events: all;
     & p {
         color: #FAFAFA;
         margin: 0 0;
@@ -508,6 +513,7 @@ input {
 
 .cannotPrevieuwDisable {
     opacity: 0;
+    display: none;
 }
 
 @media (max-width: 1000px) {

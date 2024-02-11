@@ -413,6 +413,7 @@ input:active {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  pointer-events: all;
 }
 .cannotPass p {
   color: #FAFAFA;
@@ -429,6 +430,7 @@ input:active {
 
 .cannotPassDisable {
   opacity: 0;
+  display: none;
 }
 
 .cannotAdd {
@@ -446,6 +448,7 @@ input:active {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  pointer-events: all;
 }
 .cannotAdd p {
   color: #FAFAFA;
@@ -462,6 +465,7 @@ input:active {
 
 .cannotAddDisable {
   opacity: 0;
+  display: none;
 }
 
 .cannotPrevieuw {
@@ -479,6 +483,7 @@ input:active {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  pointer-events: all;
 }
 .cannotPrevieuw p {
   color: #FAFAFA;
@@ -495,6 +500,7 @@ input:active {
 
 .cannotPrevieuwDisable {
   opacity: 0;
+  display: none;
 }
 
 @media (max-width: 1000px) {
