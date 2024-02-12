@@ -430,7 +430,7 @@ input:active {
 
 .cannotPassDisable {
   opacity: 0;
-  display: none;
+  pointer-events: none;
 }
 
 .cannotAdd {
@@ -465,7 +465,7 @@ input:active {
 
 .cannotAddDisable {
   opacity: 0;
-  display: none;
+  pointer-events: none;
 }
 
 .cannotPrevieuw {
@@ -500,7 +500,7 @@ input:active {
 
 .cannotPrevieuwDisable {
   opacity: 0;
-  display: none;
+  pointer-events: none;
 }
 
 @media (max-width: 1000px) {
