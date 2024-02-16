@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Link Share',
-  description: 'SaaS to share your links',
+  description: 'saas to share links from your social networks with your friends, colleagues, family, etc.saas to share links from your social networks with your friends, colleagues, family, etc.',
 }
 
 export default function RootLayout({ children }: UseCustomHook) {
