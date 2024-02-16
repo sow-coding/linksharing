@@ -7,6 +7,7 @@ import PrevieuwAllowedContextProvider from './../context/previeuwAllowedContext'
 import { ImageContextProvider } from '../context/imageContext'
 import { UserContextProvider } from '../context/userContext'
 import CannotPassContextProvider from '../context/cannotPassContext'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +28,10 @@ export default function RootLayout({ children }: UseCustomHook) {
       <ImageContextProvider>
       <UserContextProvider>
       <CannotPassContextProvider>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <SpeedInsights />
+        </body>
       </CannotPassContextProvider>
       </UserContextProvider>
       </ImageContextProvider>
