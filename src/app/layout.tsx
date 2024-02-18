@@ -1,6 +1,6 @@
 import '../styles/global.css'
 import { Inter } from 'next/font/google'
-import { UseCustomHook } from './linksharing/page'
+import { UseCustomHook } from './page'
 import AppContextProvider from './../context/appContext'
 import LinksContextProvider from './../context/linksContext'
 import PrevieuwAllowedContextProvider from './../context/previeuwAllowedContext'
@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Link Share',
-  description: 'saas to share links from your social networks with your friends, colleagues and family.',
+  description: 'Share your links from your social networks with your friends, colleagues and family.',
 }
 
 export default function RootLayout({ children }: UseCustomHook) {

@@ -1,6 +1,6 @@
 "use client"
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
-import { Links, UseCustomHook } from '../app/linksharing/page';
+import { Links, UseCustomHook } from '../app/page';
 
 interface LinksContext {
     links: Links;

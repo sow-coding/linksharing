@@ -4,7 +4,7 @@ import { useAppContext } from '../../context/appContext'
 import { usePrevieuwAllowedContext } from '../../context/previeuwAllowedContext'
 import LinksContainer from '../linksContainer/linksContainer'
 import { useLinksContext } from '../../context/linksContext'
-import { LinkType } from '../../app/linksharing/page'
+import { LinkType } from '../../app/page'
 import Link from '../link/link'
 import { useCannotPassContext } from '../../context/cannotPassContext'
 

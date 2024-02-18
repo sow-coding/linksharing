@@ -1,6 +1,6 @@
 "use client"
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react"
-import { UseCustomHook } from "../app/linksharing/page";
+import { UseCustomHook } from "../app/page";
 
 export interface Image {
     src: string; 
