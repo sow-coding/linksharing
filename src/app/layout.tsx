@@ -8,12 +8,13 @@ import { ImageContextProvider } from '../context/imageContext'
 import { UserContextProvider } from '../context/userContext'
 import CannotPassContextProvider from '../context/cannotPassContext'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Link Share',
-  description: 'saas to share links from your social networks with your friends, colleagues, family, etc.saas to share links from your social networks with your friends, colleagues, family, etc.',
+  description: 'saas to share links from your social networks with your friends, colleagues and family.',
 }
 
 export default function RootLayout({ children }: UseCustomHook) {
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: UseCustomHook) {
       <body className={inter.className}>
         {children}
         <SpeedInsights />
-        </body>
+      </body>
       </CannotPassContextProvider>
       </UserContextProvider>
       </ImageContextProvider>
