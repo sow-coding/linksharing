@@ -61,7 +61,7 @@ export default function Home() {
           setAuthFailed(true)
         }
         if(!response?.error) {
-          router.push("/linksharing")
+          router.push("/")
           router.refresh()
         }
       }}>Login</div>
