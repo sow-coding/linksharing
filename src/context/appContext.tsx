@@ -2,7 +2,6 @@
 import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 import { UseCustomHook } from '../app/page';
 
-
 type part = "customLinks" | "Previeuw" | "profilDetails";
 interface AppContextType {
     part: part;
